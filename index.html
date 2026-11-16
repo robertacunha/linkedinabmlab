@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LinkedIn ABM Lab</title>
+<meta name="description" content="Blank LinkedIn ABM Lab template for any B2B business: five stages with gates, learning rounds on the ICP layer, an account holdout on the ABM layer, worksheets and ad cells.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --b-main:#3A3F47; --b-deep:#2A2E34; --b-ring:#4A505A; --b-acc:#8C939C; --b-acc2:#A9AFB7; --b-tint:#D3D7DC; --b-soft:#F1F2F4; --b-line:#DDE0E4; --b-steel:#6B7178; --b-band:#C9CDD2; --b-cue-bg:#E6E8EB; --b-cue-fg:#3A3F47;
+  --bg:#F7F7F8; --fg:#2A2E34; --muted:#6B7178; --card:#FFFFFF; --line:#DDE0E4; --soft:#EEEFF1; --paper:#FFFFFF;
+  --accent:var(--b-acc); --dot:var(--b-acc); --title2:var(--fg);
+  --display:"Inter","Helvetica Neue",Arial,sans-serif; --body:"Inter","Helvetica Neue",Arial,sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --bg:#16181B; --fg:#ECEDEF; --muted:#A4A9B0; --card:#1F2226; --line:#33373D; --soft:#272A2F; --accent:var(--b-acc2); --title2:#FFFFFF; color-scheme:dark } }
+:root[data-theme="dark"]{ --bg:#16181B; --fg:#ECEDEF; --muted:#A4A9B0; --card:#1F2226; --line:#33373D; --soft:#272A2F; --accent:var(--b-acc2); --title2:#FFFFFF; color-scheme:dark }
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.55;margin:0}
+.wrap{max-width:1240px;margin:0 auto;padding-inline:max(16px,3vw);padding-block:28px 72px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
+h1{font-size:clamp(40px,6.4vw,78px);line-height:1;font-weight:800;color:var(--fg);letter-spacing:-.025em}
+h1 .lab{color:var(--accent)}
+h2{font-size:clamp(25px,3.2vw,38px);font-weight:700;line-height:1.1;letter-spacing:-.01em}
+h3{font-size:18px;font-weight:700;line-height:1.25}
+p{margin:0}
+.eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--fg)}
+.eyebrow::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--dot);margin-right:8px;vertical-align:1px}
+.lead{max-width:70ch;color:var(--muted);font-size:17px}
+header{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;padding-bottom:8px}
+.by{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.by .studio{font-weight:700;font-size:13px;letter-spacing:.04em;border:1.5px solid var(--fg);border-radius:999px;padding:4px 12px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:5px 12px;font-size:13.5px}
+.chip b{color:var(--accent);font-weight:700}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);padding:10px 0;border-bottom:1.5px solid var(--line);margin-top:6px}
+nav.jump{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;max-width:100%;min-width:0;flex:1 1 300px}
+nav.jump::-webkit-scrollbar{display:none}
+nav.jump a{white-space:nowrap;text-decoration:none;color:var(--fg);font-size:13.5px;font-weight:600;padding:6px 11px;border-radius:999px;background:var(--soft)}
+nav.jump a:hover{background:var(--b-tint);color:var(--b-main)}
+.toggle{display:inline-flex;align-items:center;gap:8px;font:600 13.5px var(--body);background:transparent;color:var(--fg);box-shadow:inset 0 0 0 1.5px var(--fg);border:0;border-radius:999px;padding:7px 14px;cursor:pointer}
+.toggle:hover{background:var(--soft)}
+.toggle.theme{margin-left:auto;padding:6px 13px}
+.toggle:focus-visible,nav.jump a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+section{margin-top:56px;scroll-margin-top:70px}
+.sec-head{display:grid;gap:8px;margin-bottom:20px;max-width:76ch}
+.sec-head p{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:14px}
+.grid.wide{grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr))}
+.tile{background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:18px 18px 20px;min-width:0;display:grid;gap:6px;align-content:start}
+.tile .num{font-family:var(--display);font-weight:800;font-size:28px;color:var(--accent);line-height:1}
+.tile p,.tile li{font-size:14.5px;color:var(--muted)}
+.tile ul{margin:2px 0 0;padding-left:18px;display:grid;gap:4px}
+.k{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--accent)}
+
+/* system overview */
+.stages{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:10px;counter-reset:st}
+.stage{background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:14px 14px 16px;display:grid;gap:6px;align-content:start;min-width:0;text-decoration:none;color:inherit}
+.stage:hover{border-color:var(--accent)}
+.stage .sn{font-family:var(--display);font-weight:800;font-size:30px;line-height:1;color:var(--accent)}
+.stage b{font-size:15.5px;line-height:1.25}
+.stage span{font-size:13.5px;color:var(--muted);line-height:1.4}
+.stage .when{font-family:var(--mono);font-size:12px;color:var(--fg);background:var(--soft);border-radius:10px;padding:2px 9px;width:fit-content;max-width:100%;line-height:1.35}
+.engines{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:14px;margin-top:14px}
+.engine{border-radius:18px;padding:18px;display:grid;gap:8px;align-content:start;background:var(--b-main);color:#FFFFFF}
+.engine .k{color:var(--b-acc2)}
+.engine h3{color:#FFFFFF}
+.engine p{color:var(--b-band);font-size:14.5px}
+.engine.alt{background:var(--card);color:var(--fg);border:1.5px solid var(--line)}
+.engine.alt .k{color:var(--accent)}
+.engine.alt h3{color:var(--fg)}
+.engine.alt p{color:var(--muted)}
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:4px}
+.flow span{font-size:12.5px;font-weight:600;border-radius:999px;padding:3px 10px;background:rgba(255,255,255,.14);color:#FFFFFF}
+.engine.alt .flow span{background:var(--soft);color:var(--fg)}
+.flow i{font-style:normal;opacity:.7}
+
+/* stage sections */
+.stage-sec{margin-top:80px;border-top:3px solid var(--fg);padding-top:22px}
+.stage-head{display:grid;gap:10px;margin-bottom:18px;max-width:80ch}
+.stage-head .pn{font-family:var(--display);font-weight:800;font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.stage-head p{color:var(--muted)}
+.gate{margin-top:16px;border:1.5px dashed var(--accent);border-radius:16px;padding:14px 16px;display:grid;gap:6px;background:var(--card)}
+.gate ul{margin:0;padding-left:18px;display:grid;gap:3px;font-size:14.5px}
+.sub{margin-top:30px}
+.sub > h3{font-size:clamp(20px,2.4vw,26px);margin-bottom:6px}
+.sub > p{color:var(--muted);max-width:78ch;margin-bottom:12px}
+.arms{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px}
+.arm{border-radius:18px;padding:16px 18px;display:grid;gap:8px;align-content:start;border:1.5px solid var(--line);background:var(--card)}
+.arm.test{border:2px solid var(--b-main)}
+.arm .tag{font:800 13px var(--display);letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:3px 10px;width:max-content}
+.arm.test .tag{background:var(--b-main);color:#FFFFFF}
+.arm.ctrl .tag{background:var(--soft);color:var(--fg)}
+.arm.out .tag{background:var(--b-tint);color:var(--b-main)}
+.arm ul{margin:0;padding-left:18px;display:grid;gap:4px;font-size:14.5px;color:var(--muted)}
+.fill{font-family:var(--mono);font-size:13px;color:var(--accent)}
+
+/* brand */
+.brand{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:14px}
+.logos{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.logo-box{border-radius:14px;display:grid;place-items:center;aspect-ratio:3/2;padding:14px}
+.logo-box img{width:80%;height:auto}
+.logo-box.light{background:#FFFFFF;border:1.5px solid var(--b-line)}
+.logo-box.dark{background:var(--b-main)}
+.logo-cap{font-size:12.5px;color:var(--muted);margin-top:6px}
+.pal{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.sw{border-radius:14px;overflow:hidden;border:1.5px solid var(--line);background:var(--card)}
+.sw i{display:block;height:56px}
+.sw div{padding:8px 10px;font-size:13px;line-height:1.35}
+.sw b{display:block}
+.sw code{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.type{display:grid;gap:10px}
+.type .spec{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;border-bottom:1.5px solid var(--line);padding-bottom:10px}
+.type .spec span{font-size:13px;color:var(--muted)}
+
+/* catalogue */
+.cat{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.prod{background:var(--card);border:1.5px solid var(--line);border-radius:18px;overflow:hidden;display:grid;align-content:start;min-width:0;grid-template-columns:minmax(0,1fr)}
+.prod span{overflow-wrap:anywhere}
+.prod .shot{background:var(--b-main);aspect-ratio:4/3;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:14px;min-width:0}
+.prod .shot svg{width:100%;height:auto}
+.prod div.info{padding:10px 12px 14px;display:grid;gap:3px}
+.prod code{font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:500;letter-spacing:.06em}
+.prod b{font-size:16px}
+.prod span{font-size:13.5px;color:var(--muted)}
+.prod .uses{font-size:12px;color:var(--fg);background:var(--soft);border-radius:999px;padding:2px 9px;width:max-content;max-width:100%;margin-top:4px;white-space:normal}
+
+/* layouts */
+.layouts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:14px}
+.lay{background:var(--card);border:1.5px solid var(--line);border-radius:18px;overflow:hidden;display:grid;align-content:start}
+.lay .mini{padding:12px 12px 0}
+.lay .txt{padding:14px 16px 18px;display:grid;gap:6px}
+.lay .txt p{font-size:14px;color:var(--muted)}
+.fixed{margin-top:14px}
+
+/* tables */
+.tbl{overflow-x:auto;background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:4px 6px;max-width:100%}
+table{border-collapse:collapse;width:100%;min-width:900px;font-size:14px}
+.tbl.slim table{min-width:640px}
+th,td{text-align:left;padding:11px 12px;border-bottom:1.5px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+th{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);white-space:nowrap}
+td.r{font-family:var(--display);font-weight:800;font-size:20px;color:var(--accent);white-space:nowrap}
+.ph{display:inline-block;font-size:12px;font-weight:700;border-radius:999px;padding:2px 9px;background:var(--soft);white-space:nowrap}
+
+/* rounds and cells */
+.round{margin-top:36px}
+.round-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px}
+.round-head .n{font-family:var(--display);font-weight:800;font-size:40px;line-height:1;color:var(--accent)}
+.round-sub{color:var(--muted);max-width:76ch;margin-top:6px;font-size:15px}
+.round-meta{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 18px}
+.round-meta span{font-size:13px;padding:4px 11px;border-radius:12px;background:var(--soft);color:var(--fg);font-weight:500;max-width:100%}
+.cells{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:18px;align-items:start}
+.card{background:var(--card);border:1.5px solid var(--line);border-radius:20px;overflow:hidden;min-width:0;display:flex;flex-direction:column}
+.card-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px 8px;padding:10px 14px;font-size:12.5px;font-weight:700;letter-spacing:.03em;border-bottom:1.5px solid var(--line)}
+.card-top .id{color:var(--accent)}
+.art{padding:12px 12px 0}
+.meta{padding:14px 16px 18px;display:grid;gap:12px;font-size:14.5px}
+.kv{display:grid;gap:4px}
+.v.m{color:var(--muted)}
+.lever{font-family:var(--display);font-weight:700;font-size:18px;line-height:1.25}
+.trig{display:flex;gap:6px;flex-wrap:wrap}
+.trig span{background:var(--b-tint);color:var(--b-main);border-radius:999px;padding:3px 10px;font-size:12.5px;font-weight:600}
+.trig.cue span{background:var(--b-cue-bg);color:var(--b-cue-fg)}
+.copy{background:var(--soft);border-radius:14px;padding:12px 14px;display:grid;gap:7px}
+.copy .row{display:grid;grid-template-columns:78px 1fr;gap:8px;font-size:14px}
+.copy .row .lab{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700;padding-top:2px}
+.copy .btn{display:inline-block;background:#0A66C2;color:#fff;border-radius:999px;padding:2px 12px;font-size:13px;font-weight:600;width:max-content}
+.copy .count{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+
+/* LinkedIn post frame (fixed light, as LinkedIn renders) */
+.post{background:#FFFFFF;color:#191919;border:1px solid #E0DFDC;border-radius:10px;overflow:hidden;font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.post-head{display:flex;gap:9px;align-items:center;padding:11px 12px 6px}
+.post-head b{display:block;font-size:13.5px;line-height:1.2}
+.post-head span{display:block;font-size:11.5px;color:#666;line-height:1.3}
+.intro{font-size:13px;line-height:1.4;padding:2px 12px 10px;color:#191919}
+.intro .more{color:#666}
+.post-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 12px;background:#F3F2EF}
+.post-foot .hl{font-size:13px;font-weight:600;line-height:1.3;color:#191919}
+.post-foot .cta{flex:none;border:1px solid #0A66C2;color:#0A66C2;border-radius:999px;padding:4px 12px;font-size:12.5px;font-weight:600}
+.post-react{display:flex;gap:14px;padding:7px 12px;border-top:1px solid #EDEDED;font-size:12px;color:#666}
+
+/* ad surface */
+.ad{position:relative;width:100%;aspect-ratio:1/1;overflow:hidden;container-type:inline-size;isolation:isolate;color:var(--b-main);background:var(--b-main)}
+.ad .logo{position:absolute;left:6cqw;bottom:5.5cqw;width:24cqw;height:auto}
+.ad .vis{position:absolute;right:6cqw;bottom:6cqw;width:62cqw;filter:drop-shadow(0 1.6cqw 3cqw rgba(0,0,0,.3))}
+.ad .vis svg{display:block;width:100%;height:auto}
+.L-tag{background:var(--b-main)}
+.L-tag::after{content:"";position:absolute;right:-18cqw;bottom:-18cqw;width:70cqw;height:70cqw;border-radius:50%;background:var(--b-ring);z-index:-1}
+/* tape line: straight label strips, one per headline line */
+.tape{position:absolute;left:7cqw;top:8cqw;max-width:84cqw;display:grid;justify-items:start;gap:1.2cqw;z-index:3}
+.tape span{font-family:var(--display);font-weight:800;font-size:var(--ts,5.6cqw);line-height:1.08;letter-spacing:-.015em;padding:1.3cqw 2.6cqw 1.4cqw;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.tape .l1{background:#FFFFFF;color:var(--b-main)}
+.tape .l2{background:var(--b-acc);color:#FFFFFF}
+.L-tag .vis{width:60cqw;bottom:21cqw;right:auto;left:50%;transform:translateX(-50%)}
+.L-tag .badge{left:auto;right:5cqw;top:31cqw;width:20cqw;height:20cqw;font-size:3.6cqw;z-index:2}
+.L-tag .logo{left:auto;right:6cqw;bottom:5.5cqw;width:24cqw}
+.badge{position:absolute;left:7cqw;top:47cqw;width:24cqw;height:24cqw;border-radius:50%;background:#FFFFFF;color:var(--b-acc);border:.8cqw solid var(--b-acc);display:grid;place-items:center;text-align:center;font:800 4.2cqw/1 var(--display);transform:rotate(-10deg);padding:2cqw}
+.ad.p45{aspect-ratio:4/5}
+.ad.p45.L-tag .vis{bottom:31cqw;width:66cqw}
+.vplay{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:16cqw;height:16cqw;border-radius:50%;background:rgba(0,0,0,.55);display:grid;place-items:center;z-index:3}
+.vplay i{width:0;height:0;margin-left:1.4cqw;border-left:5cqw solid #fff;border-top:3.2cqw solid transparent;border-bottom:3.2cqw solid transparent}
+.play{position:absolute;right:5cqw;top:5cqw;background:rgba(0,0,0,.55);color:#fff;font:600 3.6cqw/1 var(--body);padding:1.8cqw 3cqw;border-radius:99px;display:flex;align-items:center;gap:1.6cqw}
+.p45 .play{top:auto;bottom:5.5cqw;right:auto;left:5cqw;font-family:var(--mono)}
+.L-brief{background:var(--b-soft)}
+.L-brief .field{position:absolute;left:0;right:0;top:0;height:var(--bandTop,60cqw);display:grid;place-items:center}
+.L-brief .vis{position:static;width:54cqw;filter:drop-shadow(0 1.6cqw 3cqw rgba(0,0,0,.2))}
+.L-brief .logo{left:auto;right:6cqw;top:auto;bottom:4.6cqw;width:20cqw;z-index:3}
+.band{position:absolute;left:0;right:0;bottom:0;top:var(--bandTop,60cqw);background:var(--b-main);color:#FFFFFF;padding:5cqw 6cqw 12cqw;display:grid;align-content:start;gap:2cqw}
+.band h4{margin:0;font-family:var(--display);font-weight:800;font-size:6.4cqw;line-height:1.05;letter-spacing:-.01em;color:#FFFFFF;text-wrap:balance}
+.band p{font-size:3.5cqw;line-height:1.4;color:var(--b-band);max-width:70cqw}
+.band::before{content:"";position:absolute;left:6cqw;top:-1.2cqw;width:16cqw;height:2.4cqw;background:var(--b-acc);border-radius:1cqw}
+.band-btn{justify-self:start;background:#FFFFFF;color:var(--b-main);font:700 3.4cqw/1 var(--body);padding:2cqw 4cqw;border-radius:99px;margin-top:.6cqw}
+.pageno{position:absolute;right:5cqw;top:5cqw;background:rgba(0,0,0,.6);color:#fff;font:600 3.2cqw/1 var(--mono);padding:1.6cqw 2.6cqw;border-radius:99px}
+.L-sheet{background:#FFFFFF;background-image:linear-gradient(var(--b-line) .25cqw,transparent .25cqw),linear-gradient(90deg,var(--b-line) .25cqw,transparent .25cqw);background-size:6cqw 6cqw}
+.L-sheet .logo{left:auto;right:6cqw;top:auto;bottom:5cqw;width:22cqw}
+.print{position:absolute;left:8cqw;top:11cqw;width:52cqw;background:var(--b-main);padding:2.4cqw 2.4cqw 7cqw;transform:rotate(-2.5deg);box-shadow:0 1.6cqw 4cqw rgba(0,0,0,.22);border-radius:1cqw}
+.print svg{display:block;width:100%;height:auto}
+.print::before{content:"";position:absolute;left:50%;top:-2.4cqw;width:16cqw;height:5cqw;transform:translateX(-50%) rotate(3deg);background:var(--b-tint)}
+.print .cap{position:absolute;left:3cqw;bottom:2.2cqw;font:500 3cqw/1 var(--mono);color:var(--b-band);white-space:nowrap;overflow:hidden;max-width:46cqw;text-overflow:ellipsis}
+.stamp{position:absolute;right:5cqw;top:9cqw;z-index:2;width:28cqw;height:28cqw;border-radius:50%;border:1cqw dashed var(--b-acc);display:grid;place-items:center;text-align:center;transform:rotate(-14deg);color:var(--b-acc);font:800 3.4cqw/1.08 var(--display);text-transform:uppercase;padding:5cqw;background:rgba(255,255,255,.94)}
+.stamp::after{content:"";position:absolute;inset:1.6cqw;border-radius:50%;border:.5cqw solid var(--b-acc)}
+.sheet-hl{position:absolute;left:6cqw;right:30cqw;top:69cqw;font-family:var(--display);font-weight:800;font-size:6.8cqw;line-height:1.06;letter-spacing:-.015em;color:var(--b-main)}
+.sheet-hl span{color:var(--b-acc);display:block}
+.tags{position:absolute;left:6cqw;top:7cqw;display:grid;justify-items:start;gap:1.8cqw;max-width:84cqw}
+.tagl{font-family:var(--display);font-weight:800;font-size:7cqw;line-height:1.05;padding:1.6cqw 3.2cqw 1.8cqw 6.4cqw;position:relative;letter-spacing:-.01em;border-radius:1cqw}
+.tagl.a{background:var(--b-acc);color:#FFFFFF}
+.L-card{background:var(--b-main)}
+.L-card .vis{right:auto;left:42%;top:22cqw;bottom:auto;transform:translateX(-50%);width:56cqw}
+.L-card .tags{top:7cqw;max-width:88cqw}
+.L-card .tagl{font-size:4.6cqw;white-space:nowrap;padding:1.8cqw 3.4cqw 2cqw}
+.L-card .logo{left:auto;right:6cqw;top:auto;bottom:28cqw;width:20cqw}
+.cbar{position:absolute;left:0;right:0;bottom:0;height:24cqw;background:#FFFFFF;display:flex;align-items:center;justify-content:space-between;gap:3cqw;padding:0 6cqw;border-top:.8cqw solid var(--b-acc)}
+.cbar .nm{font-family:var(--display);font-weight:800;font-size:6.4cqw;line-height:1;color:var(--b-main);white-space:nowrap}
+.cbar .pr{font:500 3.4cqw/1.3 var(--body);color:var(--b-steel);margin-top:1.2cqw}
+
+/* document carousel */
+.car-wrap{position:relative}
+.strip{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;cursor:grab;scroll-behavior:smooth;overscroll-behavior-x:contain}
+.strip::-webkit-scrollbar{display:none}
+.strip.drag{cursor:grabbing;scroll-snap-type:none;scroll-behavior:auto;user-select:none}
+.strip .ad{flex:0 0 100%;scroll-snap-align:start}
+.strip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.car-btn{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;border:0;background:rgba(255,255,255,.95);color:var(--b-main);font:700 24px/1 var(--body);cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.22);display:grid;place-items:center;padding:0 0 3px;z-index:4}
+.car-btn.prev{left:8px}.car-btn.next{right:8px}
+.car-btn:disabled{opacity:0;pointer-events:none}
+.car-btn:focus-visible,.car-dot:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.car-nav{display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 0 3px;background:#FFFFFF}
+.car-dot{width:9px;height:9px;border-radius:50%;border:0;padding:0;background:var(--b-line);cursor:pointer}
+.car-dot.on{background:var(--b-main);width:20px;border-radius:99px}
+.car-count{font-size:12px;color:#666;margin-left:6px;font-variant-numeric:tabular-nums}
+
+.method .tile strong{font-size:16px}
+.method .grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))}
+.note{background:var(--soft);border-radius:16px;padding:14px 16px;font-size:14.5px;color:var(--fg);max-width:82ch;margin:12px 0 16px}
+@media (max-width:640px){ .cat{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px} }
+@media (max-width:520px){ .copy .row{grid-template-columns:1fr;gap:2px} }
+@media (prefers-reduced-motion:no-preference){ .card{transition:transform .2s} .card:hover{transform:translateY(-3px)} }
+
+/* method colours: fixed for every brand */
+:root{--s1:#5B5BD6;--s2:#0E8FD6;--s3:#0FA38A;--s4:#E08A00;--s5:#A64BD1;--bg:#F6F7FB;--soft:#EEF1F8;--line:#DFE3EE}
+:root[data-theme="dark"]{--bg:#12141C;--card:#1B1E29;--line:#2E3242;--soft:#252938}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){--bg:#12141C;--card:#1B1E29;--line:#2E3242;--soft:#252938} }
+header::after{content:"";display:block;height:6px;border-radius:999px;margin-top:6px;background:linear-gradient(90deg,var(--s1) 0 20%,var(--s2) 0 40%,var(--s3) 0 60%,var(--s4) 0 80%,var(--s5) 0)}
+.stages .stage:nth-child(1){--sc:var(--s1)}.stages .stage:nth-child(2){--sc:var(--s2)}.stages .stage:nth-child(3){--sc:var(--s3)}.stages .stage:nth-child(4){--sc:var(--s4)}.stages .stage:nth-child(5){--sc:var(--s5)}
+#s1{--sc:var(--s1)}#s2{--sc:var(--s2)}#s3{--sc:var(--s3)}#s4{--sc:var(--s4)}#s5{--sc:var(--s5)}
+.stage{border-top:6px solid var(--sc);transition:transform .15s ease,box-shadow .15s ease}
+.stage:hover{border-color:var(--sc);transform:translateY(-2px);box-shadow:0 8px 22px color-mix(in srgb,var(--sc) 22%,transparent)}
+.stage .sn{color:var(--sc)}
+.stage .when{background:color-mix(in srgb,var(--sc) 14%,transparent);color:color-mix(in srgb,var(--sc) 75%,var(--fg))}
+.stage-sec{border-top:6px solid var(--sc);position:relative}
+.stage-sec .stage-head .pn{color:var(--sc)}
+.stage-sec .k{color:color-mix(in srgb,var(--sc) 80%,var(--fg))}
+.stage-sec .tile{border-left:4px solid color-mix(in srgb,var(--sc) 55%,transparent)}
+.stage-sec .tile .num{color:var(--sc)}
+.stage-sec .fill{color:var(--sc)}
+.gate{border:2px dashed var(--sc,var(--accent));background:color-mix(in srgb,var(--sc,var(--accent)) 7%,var(--card))}
+.gate .k::before{content:"✓";display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;background:var(--sc);color:#fff;font-size:11px;margin-right:8px;letter-spacing:0;vertical-align:1px}
+.engine{background:linear-gradient(135deg,#DCE7FF 0%,#C4D6FF 100%);color:#13224F;box-shadow:0 10px 28px rgba(60,100,220,.16)}
+.engine .k{color:#3556C9}.engine h3{color:#13224F}.engine p{color:#2C3A66}
+.engine .flow span{background:#FFFFFF;color:#13224F}
+.engine .flow i{color:#3556C9;opacity:1}
+.engine.alt{background:linear-gradient(135deg,#1E3A9E 0%,#2F5BE0 100%);border:0;color:#fff;box-shadow:0 10px 28px rgba(47,91,224,.3)}
+.engine.alt .k{color:#C9D8FF}.engine.alt h3{color:#fff}.engine.alt p{color:#E6EDFF}
+.engine.alt .flow span{background:rgba(255,255,255,.2);color:#fff}
+.engine.alt .flow i{color:#fff}
+.arm{--ac:var(--line)}
+.arm.test{--ac:var(--s2)}.arm.ctrl{--ac:#7C879E}.arm.out{--ac:var(--s6)}
+.arm.go{--ac:var(--s2)}.arm.fix{--ac:var(--s4)}.arm.stop{--ac:var(--s5)}
+.arm{border:2px solid color-mix(in srgb,var(--ac) 60%,transparent);background:color-mix(in srgb,var(--ac) 6%,var(--card))}
+.arm .tag,.arm.test .tag,.arm.ctrl .tag,.arm.out .tag{background:var(--ac);color:#fff}
+nav.jump a:hover{background:var(--b-tint);color:var(--b-main)}
+.chip b{color:var(--b-acc)}
+#mapBody .ph,#runBody .ph{background:color-mix(in srgb,var(--sc) 15%,transparent);color:color-mix(in srgb,var(--sc) 78%,var(--fg));font-weight:700}
+#mapBody td.r,#runBody td.r{color:var(--b-acc)}
+.round-head .n{color:var(--s2)}
+.arm.test,.arm.ctrl,.arm.out,.arm.go,.arm.fix,.arm.stop{border:2px solid color-mix(in srgb,var(--ac) 60%,transparent)}
+.tracks{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:10px;margin-top:10px}
+.track{border:1.5px dashed var(--line);border-radius:14px;padding:10px 14px;display:grid;gap:2px;background:var(--card)}
+.track b{font-size:14px}.track span{font-size:13.5px;color:var(--muted)}
+.opt{border:2px dashed color-mix(in srgb,var(--s5) 55%,transparent);border-radius:18px;padding:18px;position:relative}
+.optflag{display:inline-block;font:800 12px var(--display);letter-spacing:.1em;text-transform:uppercase;background:var(--s5);color:#fff;border-radius:999px;padding:3px 10px;margin-bottom:8px}
+.tracksline{margin:12px 0 0;font-size:14.5px;color:var(--muted)}.tracksline b{color:var(--fg)}
+.grid.two{grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr))}
+
+</style></head><body>
+<div class="wrap">
+<header>
+  <div class="by"><span class="studio">Ad Lab by Roberta Cunha</span><span class="eyebrow">LinkedIn · Account based · Template</span><button class="toggle theme" id="themeBtn" type="button">Dark mode</button></div>
+  <h1><span data-b="name">[Brand]</span><br><span class="lab">LinkedIn ABM Lab</span></h1>
+  <p class="lead">A LinkedIn account based program in five stages, from the account list to pipeline. Two test engines run inside it: learning rounds on the ICP layer find what the buying committee responds to, and an account holdout on the ABM layer proves whether the program moves target accounts. Stages 1 to 4 end in a gate, so the next one only starts on solid ground.</p>
+  <div class="chips">
+    <span class="chip"><b>Product</b> [What the company sells, one line positioning]</span>
+    <span class="chip"><b>Buyers</b> [Buying committee roles]</span>
+    <span class="chip"><b>Accounts</b> [Number] target accounts, [number] in test, [number] in control</span>
+    <span class="chip"><b>Market</b> [Market, copy language]</span>
+    <span class="chip"><b>Formats</b> single image, document ad, vertical video, Thought Leader Ad</span>
+  </div>
+  <div class="bar">
+    <nav class="jump" aria-label="Jump to section">
+      <a href="#system">System</a><a href="#map">Test map</a><a href="#s1">1 Set up</a><a href="#s2">2 Learn</a><a href="#s3">3 Build</a><a href="#s4">4 Run</a><a href="#s5">5 Readout</a><a href="#brand">Brand</a><a href="#catalogue">Catalogue</a><a href="#layouts">Layouts</a>
+    </nav>
+  </div>
+</header>
+
+<section id="system">
+  <div class="sec-head"><span class="eyebrow">System</span><h2>Five stages, two test engines</h2><p>The same sequence for any B2B brand. Only the brand, the accounts, the offers and the copy change. Stages 1 to 3 run in order, and each of stages 1 to 4 ends in a gate. Stage 4 runs as one weekly and monthly loop for a full sales cycle, and Stage 5 is the single decision at the end. The timing assumes a sales cycle of about three months and moves with it.</p></div>
+  <div class="stages">
+    <a class="stage" href="#s1"><span class="sn">1</span><b>Set up</b><span>Audit, tracking, safe settings, house versions, sales agreement, baseline, account list, holdout split, buying roles.</span><span class="when">Weeks 1 to 4</span></a>
+    <a class="stage" href="#s2"><span class="sn">2</span><b>Learn: Flight 1</b><span>Six independent rounds on the ICP layer. Each answers one question about what the buyer values.</span><span class="when">Weeks 4 to 13</span></a>
+    <a class="stage" href="#s3"><span class="sn">3</span><b>Build: Flight 2</b><span>One core message from the learning log, written per buying role. The expert post is refreshed with it.</span><span class="when">Weeks 12 to 14</span></a>
+    <a class="stage" href="#s4"><span class="sn">4</span><b>Run</b><span>The ABM layer on the test arm, qualification and handoff, the weekly standup and the monthly scorecard, as one loop.</span><span class="when">Week 14 to window end</span></a>
+    <a class="stage" href="#s5"><span class="sn">5</span><b>Readout and scale</b><span>Test arm against control on opportunities and pipeline. One decision: scale, adjust or stop. Optional expansion round.</span><span class="when">Window end, about week 27</span></a>
+  </div>
+  <p class="tracksline"><b>Alongside the stages:</b> the tier 1 track from week 2, qualification and handoff from the first lead form (about week 10), the monthly scorecard from week 4.</p>
+  <div class="engines">
+    <div class="engine"><span class="k">Engine 1 · ICP layer · Stage 2</span><h3>Learning rounds: what does the committee value?</h3><p>Six rounds, three cells each, one variable per round. Rounds are independent: every element that is not being tested stays at a neutral house version set in Set up, never at an earlier winner. That keeps each read clean, lets rounds run in parallel on split audiences, and fills a learning log instead of a chain of winners. The ICP layer has the volume a creative test needs; target accounts in both arms see it, so it also warms them up.</p><div class="flow"><span>Hook</span><span>Lead offer</span><span>Reason to believe</span><span>Format</span><span>Ask</span><span>Buying situation</span><i>→</i><span>Learning log</span></div></div>
+    <div class="engine alt"><span class="k">Engine 2 · ABM layer · Run and readout</span><h3>Account holdout: does the program move accounts?</h3><p>Before launch, the target list is split at random within tier and industry into a test arm and a control arm. Of the split accounts, only the test arm gets the ABM layer and the ABM sales plays. After one sales cycle, the two arms are compared on opportunity rate and pipeline per account. Account audiences are too small for creative A/B tests, so the ABM layer measures account impact.</p><div class="flow"><span>Split list</span><i>→</i><span>Baseline</span><i>→</i><span>Treat test arm</span><i>→</i><span>Compare after one sales cycle</span></div></div>
+  </div>
+</section>
+
+<section id="map">
+  <div class="sec-head"><span class="eyebrow">Test map</span><h2>What is tested, and what simply runs</h2><p>Three kinds of test answer a question: the six learning rounds, the holdout and the optional expansion round. Flight 1 rounds run in pairs on two random halves of the audience where each half clears LinkedIn's audience floor, otherwise one after the other, at least three weeks each. LinkedIn serves an ad set only when 300 matched members remain after all targeting, location included; every audience on this page is built to clear it.</p></div>
+  <div class="sub" style="margin-top:0"><h3>Tests</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Test</th><th>Stage</th><th>Question</th><th>Variable</th><th>Format</th><th>Audience</th><th>Primary read</th><th>Guardrail</th></tr></thead>
+    <tbody id="mapBody"></tbody>
+  </table></div></div>
+  <div class="sub"><h3>Running without a test</h3><p>Built from what the tests learned. Nothing is compared, so they are monitored.</p>
+  <div class="tbl slim"><table>
+    <thead><tr><th>Asset</th><th>Stage</th><th>What it is for</th><th>Format</th><th>Audience</th><th>Monitor</th></tr></thead>
+    <tbody id="runBody"></tbody>
+  </table></div></div>
+  <div class="sub"><h3>How rounds are run and read</h3>
+  <div class="grid">
+    <div class="tile"><strong>Three cells, one ad set, rotated evenly</strong><p>LinkedIn's built-in A/B test compares two ad sets, runs at least two weeks and works best on large audiences. A learning round instead runs three ads in one ad set with rotation set to rotate evenly, at least three weeks. The format round is the exception: one format per ad set, so it runs three ad sets with the same audience and equal budgets.</p></div>
+    <div class="tile"><strong>When a round can be read</strong><p>At least three weeks and roughly 100 clicks per cell for a click read. A cell leads when the gap is clear and holds over the last two weeks. Reads are directional: a cell is called when it leads on the primary read and sales confirms the conversations behind it. No clear leader is also an answer, and the log says so.</p></div>
+    <div class="tile"><strong>Read each format against its own normal</strong><p>Thought Leader Ads are read and reacted to in the feed with few clicks to a page; video is watched without clicking. Compare a cell with cells of the same format, and use clicks to the landing page and engaged roles per account as the read.</p></div>
+  </div></div>
+</section>
+
+<!-- STAGE 1 -->
+<section class="stage-sec" id="s1">
+  <div class="stage-head"><span class="pn">Stage 1 · Weeks 1 to 4</span><h2>Set up</h2><p>Nothing goes live before the account can be tracked, the settings are safe, and sales has agreed what a qualified account is. Sales then picks the accounts, the list is split once and frozen, and the buying roles are mapped. The baseline taken here is what every later read is compared with.</p></div>
+  <div class="sub" style="margin-top:0"><h3>Foundation</h3><p>Weeks 1 to 3.</p>
+  <div class="grid wide">
+    <div class="tile"><span class="k">Audit</span><h3>Start from what is running</h3><ul><li>Active LinkedIn campaigns, audiences, spend and results, last 6 to 12 months</li><li>CRM: how accounts, contacts and opportunities are recorded and linked</li><li>Other channels touching the same accounts (search, email, events, sales outreach)</li><li>The company's own promises, asks and proof points, collected from the site</li></ul></div>
+    <div class="tile"><span class="k">Tracking</span><h3>Account-level measurement</h3><ul><li>Insight Tag on every page; conversions for key pages and forms</li><li>Conversions API connected to the CRM (lead, opportunity, closed-won)</li><li>Revenue Attribution Report connected</li><li>Contacts rolled up to the company record; lead-to-account matching in place</li></ul></div>
+    <div class="tile"><span class="k">Launch checklist</span><h3>Safe settings, every ad set</h3><ul><li>Audience Expansion off</li><li>LinkedIn Audience Network off</li><li>Manual or cost cap bidding, Maximum Delivery off</li><li>Budget optimization off where spend must stay even across tests</li><li>Recheck after every edit: defaults can reset</li></ul></div>
+    <div class="tile"><span class="k">ICP and house versions</span><h3>The fixed reference</h3><ul><li>ICP: <span class="fill">[industries]</span>, <span class="fill">[size]</span>, <span class="fill">[functions]</span>, <span class="fill">[seniority]</span></li><li>House hook: <span class="fill">[plain statement of the problem]</span></li><li>House offer: <span class="fill">[product with the broadest problem]</span></li><li>House reason to believe, format, ask: <span class="fill">[neutral defaults]</span></li></ul></div>
+    <div class="tile"><span class="k">Sales agreement</span><h3>SLA and qualification rule</h3><ul><li>Qualification rule (MQA), written and signed: see Run</li><li>Who acts when: marketing until qualified, then the account owner</li><li>Response time for a warm reply: same day</li><li>Shared definitions: engaged account, MQA, opportunity, pipeline</li></ul></div>
+    <div class="tile"><span class="k">Baseline</span><h3>The 90 days before the first ad</h3><ul><li>Accounts visiting the site, engaged accounts, MQAs</li><li>Opportunity rate and pipeline per target account</li><li>Average days from first touch to opportunity</li><li>Pulled per tier and per industry, so the holdout can be checked for balance</li></ul></div>
+  </div>
+  </div>
+  <div class="sub"><h3>Score with FIRE</h3><p>Score each candidate account from 1 to 3 on each lens. Start with accounts that already know the brand; add cold ICP accounts after.</p>
+  <div class="tbl slim"><table><thead><tr><th>Lens</th><th>Question</th><th>Data used for <span data-b="name">[Brand]</span></th><th>Score</th></tr></thead><tbody>
+    <tr><td><b>Fit</b></td><td>How closely does it match the accounts where we win and grow?</td><td class="fill">[firmographics, tech stack, size]</td><td>1 to 3</td></tr>
+    <tr><td><b>Intent</b></td><td>Is it researching our category or competitors?</td><td class="fill">[intent provider, site visits, hiring]</td><td>1 to 3</td></tr>
+    <tr><td><b>Relationship</b></td><td>Do we already know them?</td><td class="fill">[open or lost opportunities, past users, connections]</td><td>1 to 3</td></tr>
+    <tr><td><b>Engagement</b></td><td>Are they engaging with us now?</td><td class="fill">[ad and page engagement, events, email]</td><td>1 to 3</td></tr>
+  </tbody></table></div></div>
+
+  <div class="sub"><h3>Tiers and entitlements</h3><p>Entitlements set how many accounts each style can hold. Tier 1 stays outside the test: these accounts are too valuable to hold back, and they start on their own track in week 2.</p>
+  <div class="tbl slim"><table><thead><tr><th>Style</th><th>Accounts</th><th>Research</th><th>Ads</th><th>Outreach</th><th>In the holdout?</th></tr></thead><tbody>
+    <tr><td><b>Tier 1 · one-to-one</b></td><td class="fill">[5 to 25]</td><td>Account plan, quarterly update</td><td>Clustered with test-arm or non-target ICP accounts to clear 300</td><td>Human-written per stakeholder</td><td>No, always treated</td></tr>
+    <tr><td><b>Tier 2 · one-to-few</b></td><td class="fill">[25 to 150]</td><td>Cluster research, light per account</td><td>One company list per cluster</td><td>Sequence per role and cluster</td><td>Yes, split within cluster</td></tr>
+    <tr><td><b>Tier 3 · one-to-many</b></td><td class="fill">[hundreds]</td><td>Automated insights</td><td>Large company list</td><td>Templated, started by signals</td><td>Yes, split within industry</td></tr>
+  </tbody></table></div></div>
+
+  <div class="sub"><h3>The holdout split</h3><p>Done once, before launch, and never changed during the window. The control arm keeps everything the company already does, so the comparison isolates the ABM layer.</p>
+  <div class="arms">
+    <div class="arm test"><span class="tag">Test arm</span><ul><li>Half of tier 2 and tier 3 accounts, assigned at random within each tier and industry</li><li>Gets the ABM layer and the ABM sales plays in Run</li><li>Also sees the ICP layer like every ICP account</li></ul></div>
+    <div class="arm ctrl"><span class="tag">Control arm</span><ul><li>The other half, matched on the baseline</li><li>Excluded from every ABM ad set and ABM play</li><li>Sees the ICP layer during Learn, then only the always-on post; normal sales activity</li><li>Never moved out when it shows intent</li></ul></div>
+    <div class="arm out"><span class="tag">Outside the test</span><ul><li>Tier 1 accounts: the tier 1 track, from week 2</li><li>Existing customers: the optional expansion round</li><li>Accounts already late-stage at the split: sales leads</li></ul></div>
+  </div>
+  <p class="note"><b>Size rule.</b> A clean holdout needs about 200 accounts or more per arm, so 400 or more tier 2 and tier 3 accounts. Most B2B target lists are smaller, which makes the fallback the usual path: with a smaller list, use matched lookalike ICP accounts as the control plus the baseline, or a stepped rollout (wave 1 starts, wave 2 waits and serves as control until it starts), and report the result as directional.</p></div>
+
+  <div class="sub"><h3>Map the buying committee</h3><p>Four to six people per tier 1 account, two or three per tier 2, one or two per tier 3. The blocker stays on the map and out of the first wave.</p>
+  <div class="tbl"><table><thead><tr><th>Role</th><th>Typical titles at <span data-b="name">[Brand]</span>'s buyers</th><th>What they need to see</th><th>Angle</th><th>Core set cell</th></tr></thead><tbody>
+    <tr><td><b>Champion</b></td><td class="fill">[director or team lead who owns the problem]</td><td>Proof it works for teams like theirs</td><td>A problem their team handles and how peers solved it</td><td>C1</td></tr>
+    <tr><td><b>Decision-maker</b></td><td class="fill">[VP or C-level budget owner]</td><td>Business impact and risk</td><td>The outcome in the metrics they report on</td><td>C2</td></tr>
+    <tr><td><b>End user</b></td><td class="fill">[manager or specialist]</td><td>Day-to-day workflow gains</td><td>How their week gets easier</td><td>C3</td></tr>
+    <tr><td><b>Blocker</b></td><td class="fill">[IT, security, legal, procurement]</td><td>Safety, compliance, integration effort</td><td>The answer to their objection, through the champion</td><td>C4, opportunity stage only</td></tr>
+  </tbody></table></div></div>
+  
+  <div class="sub"><h3>Tier 1 track</h3><p>Starts in week 2 and runs alongside every stage. Tier 1 never waits for the core set.</p>
+  <div class="grid">
+    <div class="tile"><span class="k">Weeks 2 to 4</span><h3>Account plan</h3><p>One page per account: priorities, the committee by name and role, open initiatives, the situation the account is in, and the one next step. Written with the account owner.</p></div>
+    <div class="tile"><span class="k">From week 4</span><h3>People first</h3><p>Human-written outreach per stakeholder, the expert post in the feed, and invitations to events or roundtables. One sender per stakeholder.</p></div>
+    <div class="tile"><span class="k">From week 14</span><h3>Ads join</h3><p>The core set runs to tier 1, clustered with test-arm or non-target ICP accounts to clear 300, never with control accounts. The account plan is updated every quarter.</p></div>
+  </div></div>
+  <div class="gate"><span class="k">Gate to Learn</span><ul><li>Insight Tag and CAPI test events received</li><li>Launch checklist signed off</li><li>ICP, house versions and qualification rule agreed with sales</li><li>Baseline report saved</li><li>List scored, tiered and picked by sales; entitlements agreed</li><li>Holdout split done, balance checked against the baseline, frozen</li><li>Committee mapped; tier 1 account plans written</li></ul></div>
+</section>
+
+<!-- STAGE 2 -->
+<section class="stage-sec" id="s2">
+  <div class="stage-head"><span class="pn">Stage 2 · Weeks 4 to 13 · Engine 1</span><h2>Learn: Flight 1</h2><p>Six independent rounds on the ICP layer, eighteen ads. Each round changes one element and keeps everything else at the house version, so it answers one question about the buyer. The answers go into the learning log, which feeds Flight 2.</p></div>
+  <div class="grid">
+    <div class="tile"><span class="k">Rounds 1 and 2</span><p>Cold ICP audience, split in two halves. Objective: engagement. CTA: Learn more.</p></div>
+    <div class="tile"><span class="k">Rounds 3 and 4</span><p>ICP engagers: ad, video and document engagers, site visitors, company page visitors, 90 days. Objective: engagement and website visits. If a half falls below 300, run the two rounds one after the other on the full pool (about three weeks more).</p></div>
+    <div class="tile"><span class="k">Rounds 5 and 6</span><p>Engaged pool and key page visitors, 30 days, with LinkedIn lead forms. The qualification rule and the same-day handoff (see Run) go live with the first lead form, around week 10. If a half falls below 300, run the two rounds one after the other on the full pool and move Build back by about three weeks.</p></div>
+  </div>
+  <div id="flight1"></div>
+  <div class="sub"><h3>Learning log</h3><p>One line per round, filled when it closes and confirmed with sales. This table is the brief for Build.</p>
+  <div class="tbl slim"><table><thead><tr><th>Round</th><th>Question</th><th>What the audience valued</th><th>Evidence</th><th>Sales view</th></tr></thead><tbody id="logBody"></tbody></table></div></div>
+  
+  <div class="gate"><span class="k">Gate to Build</span><ul><li>Rounds 1 to 4 read: drafting can start</li><li>Rounds 5 and 6 read before the core set is approved</li><li>Learning log complete and confirmed with sales</li><li>Lead quality from rounds 5 and 6 checked against the ICP</li></ul></div>
+</section>
+
+<!-- STAGE 3 -->
+<section class="stage-sec" id="s3">
+  <div class="stage-head"><span class="pn">Stage 3 · Weeks 12 to 14</span><h2>Build: Flight 2</h2><p>One core message built from everything Flight 1 learned: the lever, the offer, the reason to believe, the format, the ask and the situation that worked. It is written once per buying role, keeps the industry and situation in the copy and never names the account. The expert post is refreshed with the same message.</p></div>
+  <div class="cells" data-cells="F2"></div>
+  <div class="gate"><span class="k">Gate to Run</span><ul><li>Core set approved: one message per role and the refreshed expert post</li><li>Every claim, offer and promise checked against the company's own pages</li><li>Role audiences built for test accounts, each clearing 300 members</li></ul></div>
+</section>
+
+<!-- STAGE 4 -->
+<section class="stage-sec" id="s4">
+  <div class="stage-head"><span class="pn">Stage 4 · Week 14 to window end · Engine 2</span><h2>Run</h2><p>One loop for one full sales cycle (at least 90 days). The core set goes to the test arm only; the control arm gets the always-on post and normal sales activity. The rule decides when sales steps in, the standup moves the accounts, and the scorecard shows both arms every month.</p></div>
+  <div class="sub" style="margin-top:0"><h3>The ABM layer</h3>
+  <div class="grid wide">
+    <div class="tile"><span class="k">Broad ABM · test arm</span><h3>The committee, by role</h3><p>Company lists of test accounts (tier 1 clustered with test-arm or non-target accounts, never control), with function and seniority layered per role. Cells C1 to C3. Engagers are excluded, so nobody sits in two campaigns. Objective: engagement and website visits.</p></div>
+    <div class="tile"><span class="k">Warm ABM · test arm</span><h3>People who engaged</h3><p>Engagers at test accounts, pooled by industry to clear 300, shown the Flight 1 winning ask with a lead form. Accounts too small to serve go to sales as a list.</p></div>
+    <div class="tile"><span class="k">Opportunity stage · test arm</span><h3>The wider committee</h3><p>When an opportunity opens, the ads widen to validation and consensus: case studies, the C4 document for IT, security and procurement, and the expert post.</p></div>
+    <div class="tile"><span class="k">Always on · everyone in the ICP</span><h3>Expert post (C5)</h3><p>Starts in week 4 with the house message and runs to the end, to the whole ICP, both arms included, at a low steady budget. Build refreshes it with the core message. It keeps the brand in memory for accounts that are not in market yet.</p></div>
+  </div>
+  
+  <div class="note"><b>Keep the control clean.</b> Check weekly that control accounts are excluded from every ABM ad set and sales play. Contamination makes the result look smaller; quietly moving accounts out of the control makes it look bigger. Both make it useless.</div>
+  </div>
+  <div class="sub"><h3>Qualify and hand off</h3><p>Live since the first lead form in Learn. The rule was agreed in Set up and does not change during the window.</p>
+  <div class="grid wide two">
+    
+    <div class="tile"><span class="k">Qualification rule</span><h3>When an account becomes an MQA</h3><p><b>Simple rule:</b> two or more people from the same account show a signal within two weeks.</p><p><b>Scored rule:</b> <span class="fill">[60]</span> engagement minutes in the last <span class="fill">[90]</span> days from at least <span class="fill">[3]</span> roles, one of them <span class="fill">[VP]</span> or above.</p><p><b>Act now:</b> <span class="fill">[a director requests a meeting; two people view the demo]</span>.</p><p><b>Excluded:</b> partners, competitors, poor fit.</p><p><b>Signals:</b> page visits and post engagement from the account, visits to <span class="fill">[pricing, demo, key pages]</span>, event registrations, a new executive in a relevant role, third-party intent.</p><p><b>Minutes:</b> page visit <span class="fill">[1]</span>, ad engagement <span class="fill">[2]</span>, email reply <span class="fill">[2]</span>, download <span class="fill">[10]</span>, event <span class="fill">[20 to 30]</span>, sales meeting <span class="fill">[30]</span>.</p></div>
+    
+    <div class="tile"><span class="k">Outreach</span><h3>Three messages per role</h3><ul><li>After the accept: context and one question about their problem</li><li>A few days later: the strongest proof for that role</li><li>A week later: a small next step or a graceful exit</li><li>Tier 1 notes written by a person; never two senders on one stakeholder</li><li>Meeting booked: pause the account's other sequences. Quiet after the sequence: back to warm-up</li></ul></div>
+    <div class="tile"><span class="k">Handoff</span><h3>Same day, four points</h3><ul><li>Who replied, their role and what they said</li><li>Which signal or content moved them</li><li>Who else at the account engaged, and how</li><li>The agreed next step and its date</li></ul><p>Logged in the CRM on the company record.</p></div>
+    <div class="tile"><span class="k">Rhythm</span><h3>GTM standup</h3><p>Every one or two weeks, 5 to 10 minutes per account owner: what happened, the top 3 to 5 accounts to move, 2 opportunities to accelerate, who does what, blockers. Alerts by email or Slack between standups.</p></div>
+  </div>
+</div>
+  <div class="sub"><h3>Monthly scorecard, from week 4</h3><p>Coverage and engagement move in weeks; pipeline moves in quarters. Until Run starts, both arms show the ICP layer only, which is the check that the split is balanced.</p>
+  <div class="tbl"><table><thead><tr><th>Layer</th><th>Metric</th><th>Source</th><th>Test arm</th><th>Control arm</th><th>Tier 1</th></tr></thead><tbody>
+    <tr><td><b>Coverage</b></td><td>Share of the committee mapped and reached</td><td>Account plan, Company Engagement Report</td><td class="fill">[ ]</td><td>n/a</td><td class="fill">[ ]</td></tr>
+    <tr><td><b>Engagement</b></td><td>Accounts with two or more people engaged</td><td>Campaign Manager, CRM</td><td class="fill">[ ]</td><td class="fill">[ ]</td><td class="fill">[ ]</td></tr>
+    <tr><td><b>Engagement</b></td><td>Engaged roles per account (role read, directional)</td><td>Company Engagement Report</td><td class="fill">[ ]</td><td>n/a</td><td class="fill">[ ]</td></tr>
+    <tr><td><b>Engagement</b></td><td>Engagement minutes per account; accounts on site</td><td>Insight Tag, CRM</td><td class="fill">[ ]</td><td class="fill">[ ]</td><td class="fill">[ ]</td></tr>
+    <tr><td><b>Progression</b></td><td>MQA rate (leading indicator, not used for the decision)</td><td>CRM</td><td class="fill">[ ]</td><td class="fill">[ ]</td><td class="fill">[ ]</td></tr>
+    <tr><td><b>Outcomes</b></td><td>Opportunity rate, pipeline per account, days to opportunity</td><td>CRM, Revenue Attribution Report</td><td class="fill">[ ]</td><td class="fill">[ ]</td><td class="fill">[ ]</td></tr>
+    <tr><td><b>Outcomes</b></td><td>Win rate and deal size (when deals close)</td><td>CRM</td><td class="fill">[ ]</td><td class="fill">[ ]</td><td class="fill">[ ]</td></tr>
+  </tbody></table></div></div>
+  
+  <div class="gate"><span class="k">Gate to Readout</span><ul><li>Full window completed (one sales cycle, at least 90 days)</li><li>Control exclusion checked every week</li><li>No change to the split or the rule during the window</li></ul></div>
+</section>
+
+<!-- STAGE 5 -->
+<section class="stage-sec" id="s5">
+  <div class="stage-head"><span class="pn">Stage 5 · Window end, about week 27</span><h2>Readout and scale</h2><p>The test arm against the control arm on opportunity rate and pipeline per account, then one decision. Tier 1 is reported on its own.</p></div>
+  <div class="sub" style="margin-top:0"><h3>The decision at window end</h3>
+  <div class="arms">
+    <div class="arm go"><span class="tag">Scale</span><ul><li>Test arm clearly ahead on opportunity rate or pipeline per account</li><li>Sales confirms the conversations</li><li>Extend the ABM layer to the control arm and the next tier</li></ul></div>
+    <div class="arm fix"><span class="tag">Adjust</span><ul><li>Engagement up, pipeline flat</li><li>The ads work; the handoff, the offer or the rule does not</li><li>Fix qualification and handoff, keep the split, run a second window</li></ul></div>
+    <div class="arm stop"><span class="tag">Stop or redesign</span><ul><li>No difference after a full window</li><li>Go back to the learning log and the account list</li><li>Run a new Flight 1 round where the gap is</li></ul></div>
+  </div></div>
+  
+  <div class="sub opt" id="expansion"><span class="optflag">Optional</span><h3>Expansion round</h3><p>The bow-tie: after closed-won, the same method grows existing accounts. Three product cards, one variable (the next product), read on meetings with current clients. It runs on the client list with its own read, so it can start at any time and does not feed the learning log or the core set.</p>
+  <p class="note"><b>Include when</b> the client sells several products and the client list clears 300 matched members in the relevant roles. Below that, expansion runs as a sales and email motion, outside LinkedIn.</p>
+  <div class="round-meta"><span>Audience: matched company list of current clients, users of at least one product</span><span>Read: meetings with current clients</span><span>Guardrail: frequency under 2 a week</span></div>
+  <div class="cells" data-cells="EX"></div></div>
+
+</section>
+
+<section id="brand">
+  <div class="sec-head"><span class="eyebrow">Brand</span><h2>[Brand tagline]</h2><p>[What the company sells and where it runs, in one sentence. The look: main colour, background, the accent taken from the logo. The voice, with one line quoted from their own site.]</p></div>
+  <div class="brand">
+    <div class="tile">
+      <span class="k">Logo</span>
+      <div class="logos">
+        <div><div class="logo-box light"><img id="logoL" alt="Logo placeholder on light"></div><p class="logo-cap">Light: brand colour on white</p></div>
+        <div><div class="logo-box dark"><img id="logoD" alt="Logo placeholder on dark"></div><p class="logo-cap">Dark: white on brand colour</p></div>
+      </div>
+    </div>
+    <div class="tile type">
+      <span class="k">Type</span>
+      <div class="spec"><span style="font:800 30px/1.05 var(--display);color:var(--fg)">[Short brand line]</span><span>[Display font] 800. Headlines and tags.</span></div>
+      <div class="spec"><span style="font:500 17px/1.3 var(--body);color:var(--fg)">[One body line from their site.]</span><span>[Body font]. Body and buttons.</span></div>
+      <div class="spec" style="border:0"><span style="font:500 15px/1.3 var(--mono);color:var(--fg)">M1 · page 2 / 4</span><span>IBM Plex Mono. Codes and data labels.</span></div>
+    </div>
+  </div>
+  <div class="pal" style="margin-top:14px" id="palette"></div>
+</section>
+
+<section id="catalogue">
+  <div class="sec-head"><span class="eyebrow">Catalogue</span><h2>Six offers</h2><p>[Five products and one service], in the company's own names and wording. The product views are drawn as illustrations, to be replaced with real screens.</p></div>
+  <div class="cat" id="cat"></div>
+</section>
+
+<section id="layouts">
+  <div class="sec-head"><span class="eyebrow">Layouts</span><h2>Four layouts, four jobs</h2><p>Rename each layout after an object from the world the brand serves. Within a round, the layout and the visual stay fixed, so the tested element is the only thing that changes.</p></div>
+  <div class="layouts" id="lays"></div>
+  <div class="grid fixed">
+    <div class="tile"><span class="k">Fixed signal</span><h3>Logo on every ad</h3><p>White on the brand colour, brand colour on white. Bottom right, on the coloured background.</p></div>
+    <div class="tile"><span class="k">Fixed signal</span><h3>The accent from the logo</h3><p>Used sparingly. It marks the second tape line, the band and the stamp.</p></div>
+    <div class="tile"><span class="k">Fixed signal</span><h3>The product is the picture</h3><p>Every ad shows a product view. No stock photos.</p></div>
+    <div class="tile"><span class="k">Fixed signal</span><h3>Short on the image</h3><p>No more than eight words on the creative. The argument goes in the intro text.</p></div>
+  </div>
+</section>
+
+
+</div>
+
+<script>
+const LOGO='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNDAgNjQiPjxyZWN0IHg9IjIiIHk9IjIiIHdpZHRoPSIyMzYiIGhlaWdodD0iNjAiIHJ4PSIxMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjM0EzRjQ3IiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1kYXNoYXJyYXk9IjggNiIvPjx0ZXh0IHg9IjEyMCIgeT0iNDEiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIyIiBmb250LXdlaWdodD0iNzAwIiBsZXR0ZXItc3BhY2luZz0iNCIgZmlsbD0iIzNBM0Y0NyI+TE9HTzwvdGV4dD48L3N2Zz4=', LOGOW='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNDAgNjQiPjxyZWN0IHg9IjIiIHk9IjIiIHdpZHRoPSIyMzYiIGhlaWdodD0iNjAiIHJ4PSIxMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1kYXNoYXJyYXk9IjggNiIvPjx0ZXh0IHg9IjEyMCIgeT0iNDEiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIyIiBmb250LXdlaWdodD0iNzAwIiBsZXR0ZXItc3BhY2luZz0iNCIgZmlsbD0iI0ZGRkZGRiI+TE9HTzwvdGV4dD48L3N2Zz4=';
+/* ============ FILL IN ONCE THE BRAND IS KNOWN ============
+   BRAND: name, suite, colours (hex from the logo, never invented), fonts.
+   PROD:  five products and one service from the company's own site.
+   AUD:   the ICP, the role layers and the target list split.
+   CELLS: replace every [bracketed brief] with copy checked against the company's pages.
+   The stages, the rounds and the test design are the method and stay. */
+const BRAND={
+ name:'[Brand]', suite:'[Product range]', expert:'[Brand] expert',
+ main:'#1B2559', deep:'#111842', ring:'#2A3577',
+ acc:'#4F7BFF', acc2:'#8FB0FF',
+ tint:'#DDE6FF', soft:'#F2F5FF', line:'#DCE2F5', steel:'#5A6385', band:'#B9C6F5',
+ cueBg:'#DDF5EE', cueFg:'#0B7A63',
+ display:'Inter', body:'Inter',
+ palette:[['Main','main','Logo, bands, text'],['Accent','acc','Second tape line, stamp'],['Accent light','acc2','Highlights in product views'],['White','#FFFFFF','Paper, first tape line'],['Tint','tint','Positive values, chips'],['Soft','soft','Fields and panels'],['Steel','steel','Secondary text']]
+};
+
+const PROD={
+ M1:{code:'M1',name:'[Product 1]',job:'[What it does, in their words]',who:'[Buyer role]'},
+ M2:{code:'M2',name:'[Product 2]',job:'[What it does, in their words]',who:'[Buyer role]'},
+ M3:{code:'M3',name:'[Product 3]',job:'[What it does, in their words]',who:'[Buyer role]'},
+ M4:{code:'M4',name:'[Product 4]',job:'[What it does, in their words]',who:'[Buyer role]'},
+ M5:{code:'M5',name:'[Product 5]',job:'[What it does, in their words]',who:'[Buyer role]'},
+ SV:{code:'SV',name:'[Service]',job:'[What the service delivers]',who:'[Buyer role]'}
+};
+
+const AUD={
+ cold:'ICP layer, cold. Industries: [list]. Companies of [size] employees or more. Functions: [functions], seniority [levels]. All target accounts included, both arms. Exclude current clients and competitors.',
+ warm:'ICP engagers, 90 days: ad, video and document engagers, Insight Tag site visitors, company page visitors.',
+ hot:'Engaged pool, 30 days: [key page] visitors, document openers, video viewers at 50 percent. Exclude form submitters. Leads checked against the ICP.',
+ broad:'Test arm only. Company lists of test accounts by cluster, function and seniority per role. Engagers excluded. Each audience clears 300.',
+ opp:'Test accounts with an open opportunity: IT, security, legal and procurement functions.',
+ all:'Whole ICP, both arms, all stages. Low steady budget.',
+ cli:'Matched company list of current clients, users of at least one product.'
+};
+
+const ROUNDS=[
+ {n:1,variable:'Hook',q:'Which psychological lever makes the committee stop?',test:'Three levers on the house offer, same product view, same layout',hold:'Offer, reason to believe, format and ask at the house version.',aud:AUD.cold+' Half A.',read:'Engagement rate in target roles; clicks to the landing page',guard:'Frequency under 4 a week',fmt:'3 cells, single image 1:1'},
+ {n:2,variable:'Lead offer',q:'Which product opens the account?',test:'Three products with the house hook',hold:'Hook at the house version from Set up. Only the product moves.',aud:AUD.cold+' Half B.',read:'Engaged accounts per product; share of target roles',guard:'Share of impressions inside the ICP',fmt:'3 cells, single image 1:1'},
+ {n:3,variable:'Reason to believe',q:'What proof moves them to the site?',test:'Three angles on Product 2',hold:'Product 2 and the Brief layout held. Ask at the house version.',aud:AUD.warm+' Half A.',read:'Site visits from ICP accounts; target accounts as a secondary line',guard:'Cost per engaged account',fmt:'3 cells, single image 1:1'},
+ {n:4,variable:'Format',q:'Which format carries the message best?',test:'Thought Leader Ad, vertical video, document ad',hold:'The house reason to believe and Product 3 held. One format per ad set: three ad sets, same audience, equal budgets.',aud:AUD.warm+' Half B.',read:'Engaged roles per account, each format against its own normal',guard:'Clicks to the landing page for the expert post',fmt:'3 ad sets, one per format'},
+ {n:5,variable:'The ask',q:'Which first step do they say yes to?',test:'The main ask as control against two other real asks',hold:'The service and the Sheet layout held.',aud:AUD.hot,read:'Lead form completion; leads accepted by sales',guard:'Share of leads matching the ICP',fmt:'3 cells, single image, lead form'},
+ {n:6,variable:'Buying situation',q:'Which situation makes the need urgent?',test:'Three situations the company names on its own site',hold:'Product 4 and the house ask held.',aud:AUD.hot,read:'Meetings accepted by sales',guard:'Lead quality checked against the ICP',fmt:'3 cells, single image, lead form'}
+];
+
+const CELLS=[
+ /* Flight 1 · Round 1: Hook. Product 1 x3 */
+ {id:'1A',g:'F1',r:1,lab:'Round 1 · Cell A',p:'M1',L:'tag',fmt:'1:1',place:'Single image',t1:'[Still doing',t2:'the task by hand?]',lever:'Self reference',emo:['Recognition','Curiosity'],
+  pt:'[Question naming the manual routine the buyer knows. Then the product and what it does, in their words.]',hl:'[Outcome of Product 1]',cta:'Learn more',
+  why:'The question works as a call out. Buyers who recognise the routine stop, which raises engagement among the right roles.'},
+ {id:'1B',g:'F1',r:1,lab:'Round 1 · Cell B',p:'M1',L:'tag',fmt:'1:1',place:'Single image',t1:'[The loss is happening.]',t2:'[Product 1 shows where.]',lever:'Loss aversion',emo:['Concern','Control'],
+  pt:'[Name the loss as already happening and its sources. Then what Product 1 shows.]',hl:'[See where the loss comes from]',cta:'Learn more',
+  why:'A loss weighs more than a gain of the same size. Naming it as current, paired with the product that finds it, gives a reason to look now.'},
+ {id:'1C',g:'F1',r:1,lab:'Round 1 · Cell C',p:'M1',L:'tag',fmt:'1:1',place:'Single image',t1:'[Where data lives.]',t2:'[Where work happens.]',lever:'Contrast and isolation',emo:['Recognition','Relief'],
+  pt:'[Name the split the team works around. Then how Product 1 closes it.]',hl:'[The split, closed]',cta:'Learn more',
+  why:'It names the split the team works around. Set against it, the product stands out as the one different option in the feed.'},
+
+ /* Round 2: Lead offer. Products 4, 5, 3 with the house hook */
+ {id:'2A',g:'F1',r:2,lab:'Round 2 · Cell A',p:'M4',L:'tag',fmt:'1:1',place:'Single image',t1:'[House hook,',t2:'applied to Product 4]',lever:'House hook, held',emo:['Recognition','Clarity'],cueLabel:'Product cue',cue:['[Cue 1]','[Cue 2]'],
+  pt:'[The house hook from Set up, applied to Product 4. Only features the site states.]',hl:'[Outcome of Product 4]',cta:'Learn more',
+  why:'[Which buyer Product 4 speaks to, and what a lead here says about the best way into the account.]'},
+ {id:'2B',g:'F1',r:2,lab:'Round 2 · Cell B',p:'M5',L:'tag',fmt:'1:1',place:'Single image',t1:'[House hook,',t2:'applied to Product 5]',lever:'House hook, held',emo:['Recognition','Clarity'],cueLabel:'Product cue',cue:['[Cue 1]','[Cue 2]'],
+  pt:'[The house hook applied to Product 5. Only features the site states.]',hl:'[Outcome of Product 5]',cta:'Learn more',
+  why:'[Which buyer Product 5 speaks to, and what a lead here says.]'},
+ {id:'2C',g:'F1',r:2,lab:'Round 2 · Cell C',p:'M3',L:'tag',fmt:'1:1',place:'Single image',t1:'[House hook,',t2:'applied to Product 3]',lever:'House hook, held',emo:['Recognition','Clarity'],cueLabel:'Product cue',cue:['[Cue 1]','[Cue 2]'],
+  pt:'[The house hook applied to Product 3. Only features the site states.]',hl:'[Outcome of Product 3]',cta:'Learn more',
+  why:'[Which buyer Product 3 speaks to, and what a lead here says.]'},
+
+ /* Round 3: Reason to believe. Product 2 x3 */
+ {id:'3A',g:'F1',r:3,lab:'Round 3 · Cell A',p:'M2',L:'brief',fmt:'1:1',place:'Single image',t1:'[What one unit of the outcome is worth.]',para:'[Worked example on scale or effort, labelled as arithmetic.]',lever:'Anchoring',emo:['Ambition','Clarity'],
+  pt:'[Worked example on the scale the buyer handles today. Then what Product 2 shows about their own number.]',hl:'[What one unit is worth]',cta:'Learn more',
+  why:'A reference point the reader can scale makes the value concrete. The figure is arithmetic on their own volume, so it promises no result.'},
+ {id:'3B',g:'F1',r:3,lab:'Round 3 · Cell B',p:'M2',L:'brief',fmt:'1:1',place:'Single image',t1:'[Built by the experts behind it.]',para:'[The expertise the company states, and who designed the product.]',lever:'Effort heuristic',emo:['Trust','Respect'],
+  pt:'[The experience behind the product, as the company states it. Then what Product 2 answers.]',hl:'[Built by practitioners]',cta:'Learn more',
+  why:'People value what took expertise to make. Pointing at the background behind the product signals depth without a claim that needs proof.'},
+ {id:'3C',g:'F1',r:3,lab:'Round 3 · Cell C',p:'M2',L:'brief',fmt:'1:1',place:'Single image',t1:'[What teams in your industry use.]',para:'[Industries of the client list.]',lever:'Social proof',emo:['Belonging','Safety'],
+  pt:'[Teams in the buyer\'s industry work with the product. Client names only with permission.]',hl:'[What their peers use]',cta:'Learn more',
+  why:'Peers in the same industry lower the perceived risk of a new supplier. Names come from the company\'s own client list, with permission.'},
+
+ /* Round 4: Format. Product 3 x3 */
+ {id:'4A',g:'F1',r:4,lab:'Round 4 · Cell A',p:'M3',L:'tag',fmt:'1:1',place:'Thought Leader Ad',tla:true,t1:'[House reason',t2:'to believe.]',lever:'House reason to believe, held',emo:['Trust','Clarity'],cueLabel:'Format cue',cue:['Personal voice','Credibility'],
+  pt:'[The house reason to believe, written as a post by an expert at the company.]',hl:'',cta:'',
+  why:'A post from a person reads as advice. It tests whether a personal voice reaches the committee better than the company page.'},
+ {id:'4B',g:'F1',r:4,lab:'Round 4 · Cell B',p:'M3',L:'tag',fmt:'4:5',place:'Vertical video',t1:'[House reason',t2:'to believe.]',video:'0:15',lever:'House reason to believe, held',emo:['Trust','Clarity'],cueLabel:'Format cue',cue:['Motion','Demonstration'],
+  pt:'[The house reason to believe, then what the video shows Product 3 doing.]',hl:'[The reason as a headline]',cta:'Learn more',
+  why:'Motion shows the product working, which a still image cannot. If video leads, a short screen recording becomes the next production line.'},
+ {id:'4C',g:'F1',r:4,lab:'Round 4 · Cell C',p:'M3',L:'brief',fmt:'1:1',place:'Document ad',t1:'[Guide title.]',para:'[Four pages: the value, where it is lost, how the product fixes it, the next step.]',
+  pages:[{t1:'[Where it is lost.]',para:'[Sources of the loss, as the company describes them.]',vis:'M1'},{t1:'[How the product fixes it.]',para:'[What Product 3 does, in their words.]',vis:'M3'},{t1:'[See your own number.]',para:'[Download the guide and estimate it for your business.]',btn:'Download'}],
+  lever:'Progressive disclosure',emo:['Confidence','Curiosity'],cueLabel:'Format cue',cue:['Self paced','Depth'],
+  pt:'[A four page guide: what it is worth, where it is lost, how to fix it.]',hl:'[Guide: title]',cta:'Download',
+  why:'A sceptical buyer wants the detail on their own terms. A document ad lets them read in the feed before any form.'},
+
+ /* Round 5: The ask. Service x3 */
+ {id:'5A',g:'F1',r:5,lab:'Round 5 · Cell A · Control',p:'SV',L:'sheet',fmt:'1:1',place:'Single image',stamp:'[Main ask]',t1:'[The company\'s',t2:'main ask.]',lever:'Control: the main call to action',emo:['Clarity','Confidence'],
+  pt:'[The company\'s main call to action, usually the demo, worded within what they promise.]',hl:'[Request a demo]',cta:'Request demo',
+  why:'The ask the company already uses is the control. The other two cells show whether a smaller or more personal first step gets more yeses from the right accounts.'},
+ {id:'5B',g:'F1',r:5,lab:'Round 5 · Cell B',p:'SV',L:'sheet',fmt:'1:1',place:'Single image',stamp:'[Expert call]',t1:'[Ask an expert.]',t2:'[Reply time as stated.]',lever:'Ambiguity aversion',emo:['Safety','Relief'],
+  pt:'[A call with an expert, with the reply time the company states. The reply time covers first contact only.]',hl:'[Talk to an expert]',cta:'Sign up',
+  why:'Uncertainty stops a first step. A named expert and a stated reply time make the next step predictable.'},
+ {id:'5C',g:'F1',r:5,lab:'Round 5 · Cell C',p:'SV',L:'sheet',fmt:'1:1',place:'Single image',stamp:'[Step 1]',t1:'[Step one of',t2:'our approach.]',lever:'Foot in the door',emo:['Curiosity','Momentum'],
+  pt:'[The first step of the company\'s own approach, offered on its own.]',hl:'[Start with step one]',cta:'Sign up',
+  why:'A small first yes makes the next one easier. Using the company\'s own first step keeps the offer real.'},
+
+ /* Round 6: Buying situation. Product 4 x3 */
+ {id:'6A',g:'F1',r:6,lab:'Round 6 · Cell A',p:'M4',L:'tag',fmt:'1:1',place:'Single image',t1:'[Situation 1,',t2:'their page title]',lever:'Self reference',emo:['Recognition','Urgency of the moment'],cueLabel:'Situation cue',cue:['[Situation 1]','[Trigger]'],
+  pt:'[The first buying situation the company names on its site, then Product 4 and the house ask.]',hl:'[Situation 1 headline]',cta:'Request demo',
+  why:'A buyer in this situation has a deadline. Naming it shows the company understands the moment as well as the product.'},
+ {id:'6B',g:'F1',r:6,lab:'Round 6 · Cell B',p:'M4',L:'tag',fmt:'1:1',place:'Single image',t1:'[Situation 2,',t2:'their page title]',lever:'Self reference',emo:['Recognition','Foresight'],cueLabel:'Situation cue',cue:['[Situation 2]','[Trigger]'],
+  pt:'[The second buying situation the company names, then Product 4 and the house ask.]',hl:'[Situation 2 headline]',cta:'Request demo',
+  why:'[What this situation tells sales about timing and who in the committee owns it.]'},
+ {id:'6C',g:'F1',r:6,lab:'Round 6 · Cell C',p:'M4',L:'tag',fmt:'1:1',place:'Single image',t1:'[Situation 3,',t2:'their page title]',lever:'Self reference',emo:['Recognition','Control'],cueLabel:'Situation cue',cue:['[Situation 3]','[Trigger]'],
+  pt:'[The third buying situation the company names, then Product 4 and the house ask.]',hl:'[Situation 3 headline]',cta:'Request demo',
+  why:'[What this situation tells sales about timing and who in the committee owns it.]'},
+
+ /* Flight 2 · Core set, one message per role */
+ {id:'C1',g:'F2',lab:'Core set · C1 · Champion',p:'M1',L:'tag',fmt:'1:1',place:'Single image',aud:AUD.broad,t1:'[How [industry] teams',t2:'solved it.]',lever:'[Flight 1 lever] with social proof',emo:['Belonging','Recognition'],cueLabel:'Role',cue:['Champion','[Director or team lead]'],
+  pt:'[The problem their team owns in [industry], and how peers solved it with the winning offer. Industry and situation, never the account name.]',hl:'[Winning offer headline]',cta:'Learn more',
+  why:'The champion builds the internal case. Proof from teams like theirs gives them the material to take upstairs. Worked example: [target account] sits in the [industry] cluster.'},
+ {id:'C2',g:'F2',lab:'Core set · C2 · Decision-maker',p:'M2',L:'brief',fmt:'1:1',place:'Single image',aud:AUD.broad,t1:'[The outcome in the numbers you report.]',para:'[The winning reason to believe, framed in the metrics a budget owner reports on.]',lever:'[Flight 1 reason to believe] with loss aversion',emo:['Control','Ambition'],cueLabel:'Role',cue:['Decision-maker','[VP or C-level]'],
+  pt:'[The business impact and the risk of not acting, in the decision-maker\'s metrics. No promised percentages.]',hl:'[Outcome headline]',cta:'Learn more',
+  why:'Budget owners weigh impact and risk. The same core message, told in their metrics, avoids product detail they will not read.'},
+ {id:'C3',g:'F2',lab:'Core set · C3 · End user',p:'M3',L:'tag',fmt:'1:1',place:'Single image',aud:AUD.broad,t1:'[Your week,',t2:'without [the task].]',lever:'Mental simulation',emo:['Ease','Relief'],cueLabel:'Role',cue:['End user','[Manager or specialist]'],
+  pt:'[How the user\'s week changes, using only steps the product page describes.]',hl:'[How it runs]',cta:'Learn more',
+  why:'Users stall on how a tool fits their routine. Letting them picture the change turns them into supporters inside the account.'},
+ {id:'C4',g:'F2',lab:'Core set · C4 · Blocker, opportunity stage',p:'M5',L:'brief',fmt:'1:1',place:'Document ad',aud:AUD.opp,t1:'[Security and integration, answered.]',para:'[The questions IT, security and procurement ask, answered with what the company states.]',
+  pages:[{t1:'[Where your data stays.]',para:'[Hosting, access and certifications, as the company states them.]',vis:'M5'},{t1:'[How it connects.]',para:'[Integrations and effort, as the company states them.]',vis:'M3'},{t1:'[Questions for our team.]',para:'[The contact route for technical questions.]',btn:'Download'}],
+  lever:'Ambiguity aversion',emo:['Safety','Trust'],cueLabel:'Role',cue:['Blocker','[IT, security, procurement]'],
+  pt:'[The answers the evaluation team needs, in one document. Served only when an opportunity is open.]',hl:'[Evaluation guide]',cta:'Download',
+  why:'Blockers stop deals over uncertainty. Shown only after the opportunity opens, it answers their questions without a cold approach, and the champion can share it.'},
+ {id:'C5',g:'F2',lab:'Core set · C5 · Always on',p:'M2',L:'tag',fmt:'1:1',place:'Thought Leader Ad',tla:true,aud:AUD.all,t1:'[The strongest',t2:'insight from Flight 1.]',lever:'Mere exposure',emo:['Trust','Curiosity'],cueLabel:'Role',cue:['Whole committee','Brand memory'],
+  pt:'[A post by an expert at the company carrying the clearest insight from the learning log. No pitch.]',hl:'',cta:'',
+  why:'Most buyers are not in market today. A steady expert voice keeps the brand in memory so it is on the shortlist when they are.'},
+
+ /* Expansion to clients */
+ {id:'E1',g:'EX',lab:'Expansion round · E1',p:'M1',L:'card',fmt:'1:1',place:'Single image',t1:'[Next product: Product 1.]',lever:'Collection completion',emo:['Progress','Satisfaction'],
+  pt:'[You already use our products. Product 1 adds its job to what you have.]',hl:'[Add Product 1 to your setup]',cta:'Learn more',
+  why:'A range with a visible next piece pulls clients to complete it. The relationship is already there, so the step feels small.'},
+ {id:'E2',g:'EX',lab:'Expansion round · E2',p:'M2',L:'card',fmt:'1:1',place:'Single image',t1:'[Who asks for this report?]',lever:'Self reference',emo:['Recognition','Relief'],
+  pt:'[Question about a report someone builds by hand. Product 2 builds it from their existing data, as the site states.]',hl:'[Reports from your existing data]',cta:'Learn more',
+  why:'The question calls out the person who builds that report by hand. In a cross sell, relevance matters more than reach.'},
+ {id:'E3',g:'EX',lab:'Expansion round · E3',p:'SV',L:'card',fmt:'1:1',place:'Single image',t1:'[Get more from what you run.]',lever:'Endowment',emo:['Ownership','Ambition'],
+  pt:'[You already work with us. Our team reviews how you use what you have and where value is left.]',hl:'[A review for current clients]',cta:'Learn more',
+  why:'Clients value what they already own. A review framed around their setup sells the service as protecting that investment.'}
+];
+
+const MAP=[
+ ...ROUNDS.map(r=>({t:'Round '+r.n,st:'2 · Learn',q:r.q,v:r.variable,f:r.fmt,a:['','Cold ICP, half A','Cold ICP, half B','ICP engagers, half A','ICP engagers, half B','Engaged pool, lead form','Engaged pool, lead form'][r.n],rd:r.read,g:r.guard})),
+ {t:'Holdout',st:'4 · Run, 5 · Readout',q:'Does the ABM layer move target accounts?',v:'ABM layer on (test arm) or off (control arm)',f:'Core set C1 to C4, warm ABM with lead form',a:'Tier 2 and 3 targets, split at random',rd:'Opportunity rate and pipeline per account, after one sales cycle; MQA rate as a leading indicator',g:'Control excluded every week; split frozen'},
+ {t:'Expansion round',st:'5 · Any time, optional',q:'Which next product opens a conversation with current clients?',v:'Next product',f:'3 product cards',a:'Current clients',rd:'Meetings with current clients',g:'Frequency under 2 a week'}
+];
+const RUN=[
+ {t:'Core set',st:'3 · Build, 4 · Run',w:'Carries the Flight 1 learnings to each buying role at test accounts',f:'C1 to C4, one per role',a:'Test arm, by role',m:'Engaged roles per account (directional); frequency under 3 a week'},
+ {t:'Always on',st:'2 · Learn to 5 · Readout',w:'Keeps the brand in memory for accounts not yet in market',f:'Expert post C5',a:'Whole ICP, both arms',m:'Reach in target roles, follows of the expert, clicks to the landing page'}
+];
+
+(()=>{const r=document.documentElement.style,m={main:'--b-main',deep:'--b-deep',ring:'--b-ring',acc:'--b-acc',acc2:'--b-acc2',tint:'--b-tint',soft:'--b-soft',line:'--b-line',steel:'--b-steel',band:'--b-band',cueBg:'--b-cue-bg',cueFg:'--b-cue-fg'};
+ for(const k in m) r.setProperty(m[k],BRAND[k]);
+ const f=(n)=>`"${n}","Helvetica Neue",Arial,sans-serif`; r.setProperty('--display',f(BRAND.display)); r.setProperty('--body',f(BRAND.body));
+ document.querySelectorAll('[data-b]').forEach(e=>e.textContent=BRAND[e.dataset.b]);
+ document.getElementById('logoL').src=LOGO; document.getElementById('logoD').src=LOGOW;})();
+
+/* Product views: drawn placeholders on a white panel. Redraw each to match what the product shows. */
+const W='#FFFFFF',B=BRAND.main,O=BRAND.acc,OR=BRAND.acc2,T=BRAND.tint,S=BRAND.soft,M=BRAND.steel,L=BRAND.line;
+const F=`font-family="${BRAND.body}, Arial, sans-serif"`;
+const head=(t)=>`<rect x="0" y="0" width="400" height="300" rx="16" fill="${W}"/><circle cx="24" cy="24" r="5" fill="${O}"/><text x="36" y="29" ${F} font-size="14" font-weight="700" fill="${B}">${t}</text>`;
+const VIS={
+ M1:()=>{const bars=[[0,100,B],[100,91,OR],[91,85,OR],[85,81,OR],[81,78,OR],[0,78,T]];
+  return `<svg viewBox="0 0 400 300" role="img" aria-label="Placeholder product view: waterfall">${head(PROD.M1.name+' · view')}
+  ${bars.map(([a,b,c],i)=>{const x=24+i*60,top=Math.max(a,b),bot=Math.min(a,b),y=196-top*1.3,h=Math.max(4,(top-bot)*1.3);return `<rect x="${x}" y="${i===0||i===5?196-top*1.3:y}" width="44" height="${i===0||i===5?top*1.3:h}" rx="4" fill="${c}"/><rect x="${x+8}" y="208" width="28" height="6" rx="3" fill="${L}"/>`}).join('')}
+  <rect x="24" y="230" width="352" height="50" rx="8" fill="${S}"/><rect x="24" y="230" width="5" height="50" fill="${O}"/>
+  <text x="40" y="250" ${F} font-size="11" font-weight="700" fill="${O}">FINDING</text><text x="40" y="268" ${F} font-size="12.5" font-weight="600" fill="${B}">[One finding the product surfaces]</text></svg>`},
+ M2:()=>{const v=[88,76,70,58,49,37];return `<svg viewBox="0 0 400 300" role="img" aria-label="Placeholder product view: bar chart">${head(PROD.M2.name+' · view')}
+  <line x1="24" y1="236" x2="376" y2="236" stroke="${L}" stroke-width="2"/><line x1="24" y1="140" x2="376" y2="140" stroke="${L}" stroke-dasharray="4 5"/><text x="376" y="133" text-anchor="end" ${F} font-size="11" fill="${M}">Target</text>
+  ${v.map((h,i)=>`<rect x="${34+i*58}" y="${236-h*1.6}" width="40" height="${h*1.6}" rx="4" fill="${h*1.6<96?OR:B}"/>`).join('')}
+  <text x="24" y="270" ${F} font-size="12" fill="${M}">[What the chart compares]</text></svg>`},
+ M3:()=>{const r=[0,1,2,3];
+  return `<svg viewBox="0 0 400 300" role="img" aria-label="Placeholder product view: table">${head(PROD.M3.name+' · view')}
+  <text x="24" y="66" ${F} font-size="11" font-weight="700" fill="${M}">ITEM</text><text x="230" y="66" text-anchor="end" ${F} font-size="11" font-weight="700" fill="${M}">BEFORE</text><text x="300" y="66" text-anchor="end" ${F} font-size="11" font-weight="700" fill="${M}">AFTER</text>
+  ${r.map(i=>`<rect x="16" y="${78+i*46}" width="368" height="38" rx="6" fill="${i%2?W:S}"/><rect x="24" y="${92+i*46}" width="${90-i*8}" height="9" rx="4" fill="${B}"/><rect x="190" y="${92+i*46}" width="40" height="9" rx="4" fill="${L}"/><rect x="260" y="${92+i*46}" width="40" height="9" rx="4" fill="${B}"/><rect x="316" y="${86+i*46}" width="60" height="22" rx="11" fill="${T}"/><text x="346" y="${101+i*46}" text-anchor="middle" ${F} font-size="10.5" font-weight="700" fill="${B}">Done</text>`).join('')}</svg>`},
+ M4:()=>`<svg viewBox="0 0 400 300" role="img" aria-label="Placeholder product view: guidance gauge">${head(PROD.M4.name+' · view')}
+  <text x="24" y="70" ${F} font-size="12" fill="${M}">[Context line]</text>
+  <text x="24" y="110" ${F} font-size="30" font-weight="800" fill="${B}">[Key value]</text>
+  <rect x="24" y="140" width="352" height="18" rx="9" fill="${S}"/><rect x="24" y="140" width="110" height="18" rx="9" fill="${OR}"/><rect x="250" y="140" width="126" height="18" rx="9" fill="${T}"/>
+  <circle cx="232" cy="149" r="12" fill="${B}" stroke="${W}" stroke-width="4"/>
+  <text x="24" y="182" ${F} font-size="11" fill="${M}">Low</text><text x="376" y="182" text-anchor="end" ${F} font-size="11" fill="${M}">High</text>
+  <rect x="24" y="210" width="352" height="64" rx="8" fill="${S}"/><text x="40" y="236" ${F} font-size="12" font-weight="700" fill="${B}">[Status]</text><text x="40" y="258" ${F} font-size="12" fill="${M}">[What it means for the user]</text></svg>`,
+ M5:()=>{const r=[.82,.56,.31];return `<svg viewBox="0 0 400 300" role="img" aria-label="Placeholder product view: progress per item">${head(PROD.M5.name+' · view')}
+  ${r.map((x,i)=>`<text x="24" y="${76+i*62}" ${F} font-size="13" font-weight="600" fill="${B}">Item ${i+1}</text><text x="376" y="${76+i*62}" text-anchor="end" ${F} font-size="12" fill="${M}">${Math.round(x*100)}%</text><rect x="24" y="${86+i*62}" width="352" height="14" rx="7" fill="${S}"/><rect x="24" y="${86+i*62}" width="${352*x}" height="14" rx="7" fill="${i?B:T}"/>`).join('')}
+  <text x="24" y="280" ${F} font-size="12" fill="${M}">[What completes at the end]</text></svg>`},
+ SV:()=>`<svg viewBox="0 0 400 300" role="img" aria-label="Placeholder service roadmap in three stages">${head(PROD.SV.name+' · roadmap')}
+  <line x1="60" y1="140" x2="340" y2="140" stroke="${L}" stroke-width="6" stroke-linecap="round"/><line x1="60" y1="140" x2="200" y2="140" stroke="${B}" stroke-width="6" stroke-linecap="round"/>
+  ${[['Assess',60,B],['Design',200,B],['Run',340,L]].map(([t,x,c])=>`<circle cx="${x}" cy="140" r="16" fill="${c}"/><text x="${x}" y="182" text-anchor="middle" ${F} font-size="14" font-weight="700" fill="${B}">${t}</text>`).join('')}
+  <circle cx="200" cy="140" r="6" fill="${O}"/>
+  <rect x="24" y="214" width="352" height="60" rx="8" fill="${S}"/><text x="40" y="240" ${F} font-size="12" font-weight="700" fill="${B}">[How the service works]</text><text x="40" y="260" ${F} font-size="12" fill="${M}">[Who delivers it]</text></svg>`
+};
+
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const logoImg=(w)=>`<img class="logo" src="${w?LOGOW:LOGO}" alt="${esc(BRAND.name)} logo">`;
+function ad(c){
+  const cls=`ad L-${c.L}${c.fmt==='4:5'?' p45':''}`, vis=`<div class="vis">${VIS[c.vis||c.p]()}</div>`;
+  if(c.L==='tag') return `<div class="${cls}">${vis}
+    <div class="tape"${c.ts?` style="--ts:${c.ts}"`:''}><span class="l1">${esc(c.t1)}</span><span class="l2">${esc(c.t2)}</span></div>
+    ${c.badge?`<span class="badge">${c.badge}</span>`:''}
+    ${c.video?`<span class="vplay"><i></i></span><span class="play">${c.video}</span>`:''}${logoImg(true)}</div>`;
+  if(c.L==='brief'){ const pv=c.vis||c.p; return `<div class="${cls}" style="--bandTop:52cqw"><div class="field"><div class="vis">${c.btn?`<svg viewBox="0 0 400 300" role="img" aria-label="Guide cover"><rect width="400" height="300" rx="16" fill="#FFFFFF"/><circle cx="200" cy="120" r="56" fill="${S}"/><text x="200" y="135" text-anchor="middle" ${F} font-size="34" font-weight="800" fill="${B}">[#]</text><text x="200" y="230" text-anchor="middle" ${F} font-size="16" font-weight="700" fill="${O}">[Guide cover line]</text></svg>`:VIS[pv]()}</div></div>${logoImg(true)}
+    ${c.total?`<span class="pageno">${c.idx+1} / ${c.total}</span>`:''}
+    <div class="band"><h4>${esc(c.t1.replace(/\.$/,''))}</h4><p>${esc(c.para)}</p>${c.btn?`<span class="band-btn">${c.btn}</span>`:''}</div></div>`;}
+  if(c.L==='sheet') return `<div class="${cls}">${logoImg(false)}
+    <div class="print">${VIS[c.p]()}<span class="cap">${esc(BRAND.name)} · ${esc(PROD[c.p].name)}</span></div>
+    <span class="stamp">${esc(c.stamp)}</span>
+    <p class="sheet-hl">${esc(c.t1)}<span>${esc(c.t2)}</span></p></div>`;
+  if(c.L==='card') return `<div class="${cls}">${vis}${logoImg(true)}
+    <div class="tags"><span class="tagl a">${esc(c.t1)}</span></div>
+    <div class="cbar"><div><div class="nm">${esc(PROD[c.p].name)}</div><div class="pr">${esc(PROD[c.p].job)}</div></div></div></div>`;
+}
+function doc(c){
+  const pgs=[{...c,idx:0},...c.pages.map((sl,i)=>({...c,...sl,idx:i+1}))].map(x=>({...x,total:c.pages.length+1}));
+  return `<div class="car-wrap"><div class="strip" tabindex="0" aria-label="Document ad, ${pgs.length} pages">${pgs.map(ad).join('')}</div>
+   <button class="car-btn prev" type="button" aria-label="Previous page" disabled>&#8249;</button><button class="car-btn next" type="button" aria-label="Next page">&#8250;</button></div>
+   <div class="car-nav">${pgs.map((_,i)=>`<button type="button" class="car-dot${i?'':' on'}" aria-label="Go to page ${i+1}"></button>`).join('')}<span class="car-count">1 / ${pgs.length}</span></div>`;
+}
+function post(c){
+  const intro=c.pt.length>110?`${esc(c.pt.slice(0,c.pt.lastIndexOf(' ',108)))}<span class="more"> ...see more</span>`:esc(c.pt);
+  const headP=c.tla?`<div class="post-head"><div><b>${esc(BRAND.expert)}</b><span>[Title] at ${esc(BRAND.name)} · Promoted</span></div></div>`:`<div class="post-head"><div><b>${esc(BRAND.name)}</b><span>Promoted</span></div></div>`;
+  const creative=c.pages?doc(c):ad(c);
+  const foot=c.tla?`<div class="post-react"><span>Like</span><span>Comment</span><span>Repost</span></div>`:`<div class="post-foot"><span class="hl">${esc(c.hl)}</span><span class="cta">${c.cta}</span></div>`;
+  return `<div class="post">${headP}<p class="intro">${intro}</p>${creative}${foot}</div>`;
+}
+function card(c){
+  return `<article class="card">
+   <div class="card-top"><span class="id">${esc(c.lab)}</span><span>${c.place} ${c.fmt} · ${esc(PROD[c.p].name)}</span></div>
+   <div class="art">${post(c)}</div>
+   <div class="meta">
+     <div class="kv"><span class="k">Lever</span><span class="lever">${esc(c.lever)}</span></div>
+     <div class="kv"><span class="k">Emotional triggers</span><div class="trig">${c.emo.map(e=>`<span>${esc(e)}</span>`).join('')}</div></div>
+     ${c.cue?`<div class="kv"><span class="k">${c.cueLabel}</span><div class="trig cue">${c.cue.map(e=>`<span>${esc(e)}</span>`).join('')}</div></div>`:''}
+     ${c.aud?`<div class="kv"><span class="k">Audience</span><span class="v m">${esc(c.aud)}</span></div>`:''}
+     <div class="copy">
+       <div class="row"><span class="lab">${c.tla?'Post':'Intro'}</span><span>${esc(c.pt)} <span class="count">${c.pt.length}/150</span></span></div>
+       ${c.tla?`<div class="row"><span class="lab">Format</span><span>Promoted post from a ${esc(BRAND.expert)}, under the expert's own name. No headline or button.</span></div>`:`<div class="row"><span class="lab">Headline</span><span><b>${esc(c.hl)}</b> <span class="count">${c.hl.length}/70</span></span></div>
+       <div class="row"><span class="lab">CTA</span><span class="btn">${c.cta}</span></div>`}
+     </div>
+     <div class="kv"><span class="k">Why this angle</span><span class="v m">${esc(c.why)}</span></div>
+   </div></article>`;
+}
+
+/* brand */
+const PAL=BRAND.palette.map(([n,k,r])=>[n,k[0]==='#'?k:BRAND[k],r]);
+document.getElementById('palette').innerHTML=PAL.map(([n,h,r])=>`<div class="sw"><i style="background:${h};${h==='#FFFFFF'?`border-bottom:1.5px solid ${BRAND.line}`:''}"></i><div><b>${n}</b><code>${h}</code><br>${r}</div></div>`).join('');
+
+/* catalogue */
+document.getElementById('cat').innerHTML=Object.entries(PROD).map(([k,p])=>`<div class="prod"><div class="shot">${VIS[k]()}</div><div class="info"><code>${p.code}</code><b>${esc(p.name)}</b><span>${esc(p.job)}</span><span>For ${esc(p.who.toLowerCase())}</span><span class="uses">Cells ${CELLS.filter(c=>c.p===k).map(c=>c.id).join(', ')}</span></div></div>`).join('');
+
+/* layouts */
+const LAYS=[['tag','Tape Line','A two line headline on two straight tape strips and the product view on the brand colour. Rename after an object from the client\'s world. Hooks, offers, roles and the expert post.','1A'],['brief','Brief','Product view on a light field above a brand colour band with one headline and one paragraph. Reasons to believe and document pages.','3A'],['sheet','Sheet','Grid paper, pinned report, round stamp. The ask.','5A'],['card','Product Card','Product view, one tag, product bar with the product name. The optional expansion round.','E1']];
+document.getElementById('lays').innerHTML=LAYS.map(([k,n,d,id],i)=>`<div class="lay"><div class="mini">${ad(CELLS.find(c=>c.id===id))}</div><div class="txt"><span class="k">Layout ${i+1}</span><h3>${n}</h3><p>${d}</p></div></div>`).join('');
+
+/* test map */
+const pill=s=>`<span class="ph" style="--sc:var(--s${s.trim()[0]})">${esc(s)}</span>`;
+document.getElementById('mapBody').innerHTML=MAP.map(r=>`<tr><td class="r">${esc(r.t)}</td><td>${pill(r.st)}</td><td>${esc(r.q)}</td><td><b>${esc(r.v)}</b></td><td>${esc(r.f)}</td><td>${esc(r.a)}</td><td>${esc(r.rd)}</td><td>${esc(r.g)}</td></tr>`).join('');
+document.getElementById('runBody').innerHTML=RUN.map(r=>`<tr><td class="r">${esc(r.t)}</td><td>${pill(r.st)}</td><td>${esc(r.w)}</td><td>${esc(r.f)}</td><td>${esc(r.a)}</td><td>${esc(r.m)}</td></tr>`).join('');
+
+/* flight 1 rounds */
+document.getElementById('flight1').innerHTML=ROUNDS.map(r=>`<div class="round">
+  <div class="round-head"><span class="n">${r.n}</span><h3 style="font-size:clamp(21px,2.6vw,28px)">${r.variable}</h3></div>
+  <p class="round-sub"><b style="color:var(--fg)">${esc(r.q)}</b> ${esc(r.test)}. ${esc(r.hold)}</p>
+  <div class="round-meta"><span>Audience: ${esc(r.aud)}</span><span>Read: ${esc(r.read)}</span><span>Guardrail: ${esc(r.guard)}</span></div>
+  <div class="cells">${CELLS.filter(c=>c.g==='F1'&&c.r===r.n).map(card).join('')}</div></div>`).join('');
+
+/* other cell groups */
+document.querySelectorAll('[data-cells]').forEach(el=>{el.innerHTML=CELLS.filter(c=>c.g===el.dataset.cells).map(card).join('')});
+
+/* learning log */
+document.getElementById('logBody').innerHTML=ROUNDS.map(r=>`<tr><td class="r">${r.n}</td><td>${esc(r.q)}</td><td class="fill">[ ]</td><td class="fill">[ ]</td><td class="fill">[ ]</td></tr>`).join('');
+
+/* document controls */
+document.querySelectorAll('.car-wrap').forEach(w=>{
+  const st=w.querySelector('.strip'), prev=w.querySelector('.prev'), next=w.querySelector('.next');
+  const nav=w.nextElementSibling, dots=[...nav.querySelectorAll('.car-dot')], cnt=nav.querySelector('.car-count'), n=dots.length;
+  const idx=()=>Math.round(st.scrollLeft/st.clientWidth);
+  const go=i=>st.scrollTo({left:Math.max(0,Math.min(n-1,i))*st.clientWidth,behavior:'smooth'});
+  const sync=()=>{const i=idx(); dots.forEach((d,k)=>d.classList.toggle('on',k===i)); prev.disabled=i<=0; next.disabled=i>=n-1; cnt.textContent=(i+1)+' / '+n;};
+  prev.onclick=()=>go(idx()-1); next.onclick=()=>go(idx()+1);
+  dots.forEach((d,k)=>d.onclick=()=>go(k));
+  st.addEventListener('scroll',()=>requestAnimationFrame(sync));
+  st.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){e.preventDefault();go(idx()+1)} if(e.key==='ArrowLeft'){e.preventDefault();go(idx()-1)}});
+  let x0=null,s0=0,moved=0;
+  st.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')return; x0=e.clientX; s0=st.scrollLeft; moved=0; st.classList.add('drag'); st.setPointerCapture(e.pointerId);});
+  st.addEventListener('pointermove',e=>{if(x0===null)return; moved=e.clientX-x0; st.scrollLeft=s0-moved;});
+  const end=()=>{if(x0===null)return; st.classList.remove('drag'); const i=Math.round(s0/st.clientWidth)+(moved<-40?1:moved>40?-1:0); x0=null; go(i);};
+  st.addEventListener('pointerup',end); st.addEventListener('pointercancel',end);
+});
+/* colour mode */
+const tBtn=document.getElementById('themeBtn'), root=document.documentElement;
+const isDark=()=>root.dataset.theme?root.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;
+const label=()=>{tBtn.textContent=isDark()?'Light mode':'Dark mode';};
+try{const saved=localStorage.getItem('abmlab-theme'); if(saved) root.dataset.theme=saved;}catch(e){}
+label();
+tBtn.addEventListener('click',()=>{root.dataset.theme=isDark()?'light':'dark'; label(); try{localStorage.setItem('abmlab-theme',root.dataset.theme);}catch(e){}});
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',label);
+
+</script>
+</body></html>
