@@ -2,7 +2,7 @@
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>LinkedIn ABM Lab</title>
-<meta name="description" content="Blank LinkedIn ABM Lab template for any B2B business: five stages with gates, learning rounds on the ICP layer, an account holdout on the ABM layer, worksheets and ad cells.">
+<meta name="description" content="Blank LinkedIn ABM Lab template for any B2B business: five stages with gates, an account holdout on the ABM layer from week 4, Flight 1 rounds on the ICP layer, worksheets and ad cells.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
@@ -57,12 +57,12 @@ section{margin-top:56px;scroll-margin-top:70px}
 
 /* system overview */
 .stages{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:10px;counter-reset:st}
-.stage{background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:14px 14px 16px;display:grid;gap:6px;align-content:start;min-width:0;text-decoration:none;color:inherit}
+.stage{background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:14px 14px 16px;display:grid;gap:6px;grid-template-rows:auto auto 1fr auto;min-width:0;text-decoration:none;color:inherit}
 .stage:hover{border-color:var(--accent)}
 .stage .sn{font-family:var(--display);font-weight:800;font-size:30px;line-height:1;color:var(--accent)}
 .stage b{font-size:15.5px;line-height:1.25}
 .stage span{font-size:13.5px;color:var(--muted);line-height:1.4}
-.stage .when{font-family:var(--mono);font-size:12px;color:var(--fg);background:var(--soft);border-radius:10px;padding:2px 9px;width:fit-content;max-width:100%;line-height:1.35}
+.stage .when{align-self:end;margin-top:6px;font-family:var(--mono);font-size:12px;color:var(--fg);background:var(--soft);border-radius:10px;padding:2px 9px;width:fit-content;max-width:100%;line-height:1.35}
 .engines{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:14px;margin-top:14px}
 .engine{border-radius:18px;padding:18px;display:grid;gap:8px;align-content:start;background:var(--b-main);color:#FFFFFF}
 .engine .k{color:var(--b-acc2)}
@@ -304,13 +304,14 @@ nav.jump a:hover{background:var(--b-tint);color:var(--b-main)}
 .optflag{display:inline-block;font:800 12px var(--display);letter-spacing:.1em;text-transform:uppercase;background:var(--s5);color:#fff;border-radius:999px;padding:3px 10px;margin-bottom:8px}
 .tracksline{margin:12px 0 0;font-size:14.5px;color:var(--muted)}.tracksline b{color:var(--fg)}
 .grid.two{grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr))}
+.labfoot{margin-top:72px;padding-top:20px;border-top:1.5px solid var(--line);font-size:13px;color:var(--muted);max-width:110ch}
 
 </style></head><body>
 <div class="wrap">
 <header>
-  <div class="by"><span class="studio">Ad Lab by Roberta Cunha</span><span class="eyebrow">LinkedIn · Account based · Template</span><button class="toggle theme" id="themeBtn" type="button">Dark mode</button></div>
+  <div class="by"><span class="studio">ABM lab by Simplificate</span><span class="eyebrow">LinkedIn · Account based · Template</span><button class="toggle theme" id="themeBtn" type="button">Dark mode</button></div>
   <h1><span data-b="name">[Brand]</span><br><span class="lab">LinkedIn ABM Lab</span></h1>
-  <p class="lead">A LinkedIn account based program in five stages, from the account list to pipeline. Two test engines run inside it: learning rounds on the ICP layer find what the buying committee responds to, and an account holdout on the ABM layer proves whether the program moves target accounts. Stages 1 to 4 end in a gate, so the next one only starts on solid ground.</p>
+  <p class="lead">A LinkedIn ABM program in five stages, from account list to pipeline. From week 4, the ABM layer runs against a control group of accounts, while Flight 1 rounds on the ICP layer find the message that becomes the core set. Stages 1 to 4 each end in a gate.</p>
   <div class="chips">
     <span class="chip"><b>Product</b> [What the company sells, one line positioning]</span>
     <span class="chip"><b>Buyers</b> [Buying committee roles]</span>
@@ -320,107 +321,147 @@ nav.jump a:hover{background:var(--b-tint);color:var(--b-main)}
   </div>
   <div class="bar">
     <nav class="jump" aria-label="Jump to section">
-      <a href="#system">System</a><a href="#map">Test map</a><a href="#s1">1 Set up</a><a href="#s2">2 Learn</a><a href="#s3">3 Build</a><a href="#s4">4 Run</a><a href="#s5">5 Readout</a><a href="#brand">Brand</a><a href="#catalogue">Catalogue</a><a href="#layouts">Layouts</a>
+      <a href="#system">System</a><a href="#map">Test map</a><a href="#s1">1 Set up and target list</a><a href="#s2">2 Run</a><a href="#s3">3 Learn</a><a href="#s4">4 Build</a><a href="#s5">5 Readout</a><a href="#brand">Brand</a><a href="#catalogue">Catalogue</a><a href="#layouts">Layouts</a>
     </nav>
   </div>
 </header>
 
 <section id="system">
-  <div class="sec-head"><span class="eyebrow">System</span><h2>Five stages, two test engines</h2><p>The same sequence for any B2B brand. Only the brand, the accounts, the offers and the copy change. Stages 1 to 3 run in order, and each of stages 1 to 4 ends in a gate. Stage 4 runs as one weekly and monthly loop for a full sales cycle, and Stage 5 is the single decision at the end. The timing assumes a sales cycle of about three months and moves with it.</p></div>
+  <div class="sec-head"><span class="eyebrow">System</span><h2>Five stages, two test engines</h2><p>Adapted to each business model, health check and sales cycle. ABM ads start on the test arm in week 4 with default messages and switch to the core set once Build is approved (about week 14), so Run, Learn and Build overlap. Timing assumes a three month sales cycle.</p></div>
   <div class="stages">
-    <a class="stage" href="#s1"><span class="sn">1</span><b>Set up</b><span>Audit, tracking, safe settings, house versions, sales agreement, baseline, account list, holdout split, buying roles.</span><span class="when">Weeks 1 to 4</span></a>
-    <a class="stage" href="#s2"><span class="sn">2</span><b>Learn: Flight 1</b><span>Six independent rounds on the ICP layer. Each answers one question about what the buyer values.</span><span class="when">Weeks 4 to 13</span></a>
-    <a class="stage" href="#s3"><span class="sn">3</span><b>Build: Flight 2</b><span>One core message from the learning log, written per buying role. The expert post is refreshed with it.</span><span class="when">Weeks 12 to 14</span></a>
-    <a class="stage" href="#s4"><span class="sn">4</span><b>Run</b><span>The ABM layer on the test arm, qualification and handoff, the weekly standup and the monthly scorecard, as one loop.</span><span class="when">Week 14 to window end</span></a>
-    <a class="stage" href="#s5"><span class="sn">5</span><b>Readout and scale</b><span>Test arm against control on opportunities and pipeline. One decision: scale, adjust or stop. Optional expansion round.</span><span class="when">Window end, about week 27</span></a>
+    <a class="stage" href="#s1"><span class="sn">1</span><b>Set up and target list</b><span>Audit, tracking, account list, holdout split, buying roles and baseline.</span><span class="when">Weeks 1 to 4</span></a>
+    <a class="stage" href="#s2"><span class="sn">2</span><b>Run</b><span>The ABM layer on the test arm: default messages, then the core set. Weekly standup, monthly scorecard.</span><span class="when">Week 4 to window end</span></a>
+    <a class="stage" href="#s3"><span class="sn">3</span><b>Learn: Flight 1</b><span>Six rounds on the ICP layer, one buyer question each.</span><span class="when">Weeks 4 to 13</span></a>
+    <a class="stage" href="#s4"><span class="sn">4</span><b>Build: Flight 2</b><span>One core message per buying role, replacing the default messages.</span><span class="when">Weeks 12 to 14</span></a>
+    <a class="stage" href="#s5"><span class="sn">5</span><b>Readout and scale</b><span>Test arm against control on pipeline. Scale, adjust or stop.</span><span class="when">Window end, about week 27</span></a>
   </div>
-  <p class="tracksline"><b>Alongside the stages:</b> the tier 1 track from week 2, qualification and handoff from the first lead form (about week 10), the monthly scorecard from week 4.</p>
   <div class="engines">
-    <div class="engine"><span class="k">Engine 1 · ICP layer · Stage 2</span><h3>Learning rounds: what does the committee value?</h3><p>Six rounds, three cells each, one variable per round. Rounds are independent: every element that is not being tested stays at a neutral house version set in Set up, never at an earlier winner. That keeps each read clean, lets rounds run in parallel on split audiences, and fills a learning log instead of a chain of winners. The ICP layer has the volume a creative test needs; target accounts in both arms see it, so it also warms them up.</p><div class="flow"><span>Hook</span><span>Lead offer</span><span>Reason to believe</span><span>Format</span><span>Ask</span><span>Buying situation</span><i>→</i><span>Learning log</span></div></div>
-    <div class="engine alt"><span class="k">Engine 2 · ABM layer · Run and readout</span><h3>Account holdout: does the program move accounts?</h3><p>Before launch, the target list is split at random within tier and industry into a test arm and a control arm. Of the split accounts, only the test arm gets the ABM layer and the ABM sales plays. After one sales cycle, the two arms are compared on opportunity rate and pipeline per account. Account audiences are too small for creative A/B tests, so the ABM layer measures account impact.</p><div class="flow"><span>Split list</span><i>→</i><span>Baseline</span><i>→</i><span>Treat test arm</span><i>→</i><span>Compare after one sales cycle</span></div></div>
+    <div class="engine"><span class="k">Engine 1 · ICP layer · Stage 3</span><h3>Learning rounds: what does the committee value?</h3><p>One variable per round; everything else stays at the default, so each answer is clean.</p><div class="flow"><span>Hook</span><span>Lead offer</span><span>Reason to believe</span><span>Format</span><span>Ask</span><span>Buying situation</span><i>→</i><span>Learning log</span><i>→</i><span>Core set</span></div></div>
+    <div class="engine alt"><span class="k">Engine 2 · ABM layer · Stages 2 and 5</span><h3>Account holdout: does ABM create pipeline?</h3><p>Random split within tier and industry; only the test arm gets ABM ads and sales plays.</p><div class="flow"><span>Split list</span><i>→</i><span>Baseline</span><i>→</i><span>ABM on test arm</span><i>→</i><span>Compare pipeline</span></div></div>
   </div>
 </section>
 
 <section id="map">
-  <div class="sec-head"><span class="eyebrow">Test map</span><h2>What is tested, and what simply runs</h2><p>Three kinds of test answer a question: the six learning rounds, the holdout and the optional expansion round. Flight 1 rounds run in pairs on two random halves of the audience where each half clears LinkedIn's audience floor, otherwise one after the other, at least three weeks each. LinkedIn serves an ad set only when 300 matched members remain after all targeting, location included; every audience on this page is built to clear it.</p></div>
-  <div class="sub" style="margin-top:0"><h3>Tests</h3>
+  <div class="sec-head"><span class="eyebrow">Test map</span><h2>What is tested, and what runs always-on</h2><p>Two tests: six learning rounds and the account holdout.</p></div>
+  <div class="sub" style="margin-top:0"><h3>Test plan</h3>
   <div class="tbl"><table>
     <thead><tr><th>Test</th><th>Stage</th><th>Question</th><th>Variable</th><th>Format</th><th>Audience</th><th>Primary read</th><th>Guardrail</th></tr></thead>
     <tbody id="mapBody"></tbody>
   </table></div></div>
-  <div class="sub"><h3>Running without a test</h3><p>Built from what the tests learned. Nothing is compared, so they are monitored.</p>
+  <div class="sub"><h3>Always-on campaigns</h3><p>Run continuously from the learnings until the readout. The core set is measured through the holdout.</p>
   <div class="tbl slim"><table>
     <thead><tr><th>Asset</th><th>Stage</th><th>What it is for</th><th>Format</th><th>Audience</th><th>Monitor</th></tr></thead>
     <tbody id="runBody"></tbody>
   </table></div></div>
-  <div class="sub"><h3>How rounds are run and read</h3>
-  <div class="grid">
-    <div class="tile"><strong>Three cells, one ad set, rotated evenly</strong><p>LinkedIn's built-in A/B test compares two ad sets, runs at least two weeks and works best on large audiences. A learning round instead runs three ads in one ad set with rotation set to rotate evenly, at least three weeks. The format round is the exception: one format per ad set, so it runs three ad sets with the same audience and equal budgets.</p></div>
-    <div class="tile"><strong>When a round can be read</strong><p>At least three weeks and roughly 100 clicks per cell for a click read. A cell leads when the gap is clear and holds over the last two weeks. Reads are directional: a cell is called when it leads on the primary read and sales confirms the conversations behind it. No clear leader is also an answer, and the log says so.</p></div>
-    <div class="tile"><strong>Read each format against its own normal</strong><p>Thought Leader Ads are read and reacted to in the feed with few clicks to a page; video is watched without clicking. Compare a cell with cells of the same format, and use clicks to the landing page and engaged roles per account as the read.</p></div>
-  </div></div>
 </section>
 
 <!-- STAGE 1 -->
 <section class="stage-sec" id="s1">
-  <div class="stage-head"><span class="pn">Stage 1 · Weeks 1 to 4</span><h2>Set up</h2><p>Nothing goes live before the account can be tracked, the settings are safe, and sales has agreed what a qualified account is. Sales then picks the accounts, the list is split once and frozen, and the buying roles are mapped. The baseline taken here is what every later read is compared with.</p></div>
+  <div class="stage-head"><span class="pn">Stage 1 · Weeks 1 to 4</span><h2>Set up and target list</h2><p>An audit, tracking and a shared definition of a qualified account come first. Marketing and sales then rank the accounts, split the list once and map the buying roles. The baseline taken here anchors every later read.</p></div>
   <div class="sub" style="margin-top:0"><h3>Foundation</h3><p>Weeks 1 to 3.</p>
   <div class="grid wide">
-    <div class="tile"><span class="k">Audit</span><h3>Start from what is running</h3><ul><li>Active LinkedIn campaigns, audiences, spend and results, last 6 to 12 months</li><li>CRM: how accounts, contacts and opportunities are recorded and linked</li><li>Other channels touching the same accounts (search, email, events, sales outreach)</li><li>The company's own promises, asks and proof points, collected from the site</li></ul></div>
-    <div class="tile"><span class="k">Tracking</span><h3>Account-level measurement</h3><ul><li>Insight Tag on every page; conversions for key pages and forms</li><li>Conversions API connected to the CRM (lead, opportunity, closed-won)</li><li>Revenue Attribution Report connected</li><li>Contacts rolled up to the company record; lead-to-account matching in place</li></ul></div>
-    <div class="tile"><span class="k">Launch checklist</span><h3>Safe settings, every ad set</h3><ul><li>Audience Expansion off</li><li>LinkedIn Audience Network off</li><li>Manual or cost cap bidding, Maximum Delivery off</li><li>Budget optimization off where spend must stay even across tests</li><li>Recheck after every edit: defaults can reset</li></ul></div>
-    <div class="tile"><span class="k">ICP and house versions</span><h3>The fixed reference</h3><ul><li>ICP: <span class="fill">[industries]</span>, <span class="fill">[size]</span>, <span class="fill">[functions]</span>, <span class="fill">[seniority]</span></li><li>House hook: <span class="fill">[plain statement of the problem]</span></li><li>House offer: <span class="fill">[product with the broadest problem]</span></li><li>House reason to believe, format, ask: <span class="fill">[neutral defaults]</span></li></ul></div>
-    <div class="tile"><span class="k">Sales agreement</span><h3>SLA and qualification rule</h3><ul><li>Qualification rule (MQA), written and signed: see Run</li><li>Who acts when: marketing until qualified, then the account owner</li><li>Response time for a warm reply: same day</li><li>Shared definitions: engaged account, MQA, opportunity, pipeline</li></ul></div>
-    <div class="tile"><span class="k">Baseline</span><h3>The 90 days before the first ad</h3><ul><li>Accounts visiting the site, engaged accounts, MQAs</li><li>Opportunity rate and pipeline per target account</li><li>Average days from first touch to opportunity</li><li>Pulled per tier and per industry, so the holdout can be checked for balance</li></ul></div>
+    <div class="tile"><span class="k">Audit</span><h3>Start from what is running</h3><ul><li>Active LinkedIn campaigns, audiences, spend and results, last 6 to 12 months</li><li>CRM: how accounts, contacts and opportunities are recorded and linked</li><li>Other channels touching the same accounts (search, email, events, sales outreach)</li><li>The company's own promises, asks and proof points, collected from the site</li><li>Won and lost deals, last 12 months, for the Fit filter</li></ul></div>
+    <div class="tile"><span class="k">Tracking</span><h3>Account-level measurement</h3><ul><li>Insight Tag on every page; conversions for key pages and forms</li><li>Conversions API connected to the CRM (lead, opportunity, closed-won)</li><li>Revenue Attribution Report connected</li><li>Contacts rolled up to the company record; lead-to-account matching in place</li><li>Tier and arm fields on every CRM account, filled at the split; lead forms synced to the CRM</li><li>Legal basis confirmed before any contact list sync</li></ul></div>
+    <div class="tile"><span class="k">ICP and defaults</span><h3>What every test holds fixed</h3><ul><li>ICP: <span class="fill">[industries]</span>, <span class="fill">[size]</span>, <span class="fill">[functions]</span>, <span class="fill">[seniority]</span></li><li>Default hook <span class="fill">[plain statement of the problem]</span> and offer <span class="fill">[product with the broadest problem]</span></li><li>Default reason to believe, format and ask: <span class="fill">[neutral versions]</span></li><li>Default ABM message per buying role, live until the core set is approved</li></ul></div>
+    <div class="tile"><span class="k">Sales agreement</span><h3>Service level agreement and qualification rule</h3><ul><li>Qualification rule (MQA) agreed in writing; details in Run</li><li>Who acts when: marketing until qualified, then the account owner</li><li>Sales follows up within one working day of a reply, lead form or demo request</li><li>Shared definitions: engaged account, MQA, opportunity, pipeline</li><li>Where sales uses Sales Navigator: account lists per tier with test and control marked, alerts into the standup</li></ul></div>
+    <div class="tile"><span class="k">Baseline</span><h3>The 90 days before the first ad</h3><ul><li>Accounts on site and accounts with two or more people engaged</li><li>MQA rate, opportunity rate and pipeline per account</li><li>Days to opportunity; win rate and deal size from the last 12 months</li><li>Pulled per account, within tier and industry; compared by arm after the split</li></ul></div>
+    <div class="tile"><span class="k">Launch checklist</span><h3>Settings and assets before launch</h3><ul><li>Audience Expansion off</li><li>LinkedIn Audience Network off</li><li>Manual or cost cap bidding</li><li>Budget optimization off where spend must stay even across tests</li><li>Optimized ad rotation off on learning rounds</li><li>Company lists built with LinkedIn page URLs, match rate 80% or more</li><li>Thought Leader Ad approvals; one landing page per offer</li></ul></div>
   </div>
   </div>
-  <div class="sub"><h3>Score with FIRE</h3><p>Score each candidate account from 1 to 3 on each lens. Start with accounts that already know the brand; add cold ICP accounts after.</p>
-  <div class="tbl slim"><table><thead><tr><th>Lens</th><th>Question</th><th>Data used for <span data-b="name">[Brand]</span></th><th>Score</th></tr></thead><tbody>
-    <tr><td><b>Fit</b></td><td>How closely does it match the accounts where we win and grow?</td><td class="fill">[firmographics, tech stack, size]</td><td>1 to 3</td></tr>
-    <tr><td><b>Intent</b></td><td>Is it researching our category or competitors?</td><td class="fill">[intent provider, site visits, hiring]</td><td>1 to 3</td></tr>
-    <tr><td><b>Relationship</b></td><td>Do we already know them?</td><td class="fill">[open or lost opportunities, past users, connections]</td><td>1 to 3</td></tr>
-    <tr><td><b>Engagement</b></td><td>Are they engaging with us now?</td><td class="fill">[ad and page engagement, events, email]</td><td>1 to 3</td></tr>
+  <div class="sub"><h3>Budget and economics</h3><p>Set before launch from the growth plan, with the payback threshold the program must clear to scale.</p>
+  <div class="grid">
+    <div class="tile"><span class="k">Budget split</span><h3>Where the budget goes</h3><ul><li>Learning rounds on the ICP layer</li><li>ABM ads to the test arm</li><li>Always-on Thought Leader Ad</li><li>Tier 1 accounts, one-to-one</li></ul><p>Held until the readout, then reviewed.</p></div>
+    <div class="tile"><span class="k">Test budget</span><h3>Per learning round</h3><ul><li>&euro;500 to &euro;1,000 per round, split evenly between cells</li><li>Read on engaged target accounts and engagement rate in target roles; clicks are secondary</li><li>At least 1,000 impressions per cell before a read; fewer than 10 engaged target accounts is inconclusive</li></ul></div>
+    <div class="tile"><span class="k">Payback threshold</span><h3>What the program must clear to scale</h3><ul><li>Break even CAC, read on gross margin</li><li>Payback threshold in months, applied at the readout to the extra pipeline in the test arm</li></ul></div>
+  </div></div>
+
+  <div class="sub"><h3>Select with FIRE</h3><p>Fit, Intent, Recency, Engagement. Fit narrows the list, intent and recency rank it, engagement sets the play.</p>
+  <div class="tbl slim"><table><thead><tr><th>Lens</th><th>Question</th><th>Data used for <span data-b="name">[Brand]</span></th><th>Decides</th></tr></thead><tbody>
+    <tr><td><b>Fit</b></td><td>Does it match the ICP?</td><td class="fill">[firmographics, tech stack, size]</td><td>Filter in or out</td></tr>
+    <tr><td><b>Intent</b></td><td>Is it researching our category?</td><td class="fill">[intent provider, site visits, hiring]</td><td>Rank</td></tr>
+    <tr><td><b>Recency</b></td><td>How recent is the last signal?</td><td class="fill">[events, site visits, sales contact]</td><td>Rank and time sales</td></tr>
+    <tr><td><b>Engagement</b></td><td>Which topics does it engage with?</td><td class="fill">[ad and page engagement, events, email]</td><td>Choose the play</td></tr>
   </tbody></table></div></div>
 
-  <div class="sub"><h3>Tiers and entitlements</h3><p>Entitlements set how many accounts each style can hold. Tier 1 stays outside the test: these accounts are too valuable to hold back, and they start on their own track in week 2.</p>
+  <div class="sub"><h3>Tiers and the holdout</h3><p>Tiers follow ITSMA's one-to-one, one-to-few and one-to-many model, sized by sales capacity. Tiers 2 and 3 are split at random within tier and industry into a test arm and a control arm: at least 100 accounts per arm, frozen until the readout.</p>
   <div class="tbl slim"><table><thead><tr><th>Style</th><th>Accounts</th><th>Research</th><th>Ads</th><th>Outreach</th><th>In the holdout?</th></tr></thead><tbody>
-    <tr><td><b>Tier 1 · one-to-one</b></td><td class="fill">[5 to 25]</td><td>Account plan, quarterly update</td><td>Clustered with test-arm or non-target ICP accounts to clear 300</td><td>Human-written per stakeholder</td><td>No, always treated</td></tr>
-    <tr><td><b>Tier 2 · one-to-few</b></td><td class="fill">[25 to 150]</td><td>Cluster research, light per account</td><td>One company list per cluster</td><td>Sequence per role and cluster</td><td>Yes, split within cluster</td></tr>
-    <tr><td><b>Tier 3 · one-to-many</b></td><td class="fill">[hundreds]</td><td>Automated insights</td><td>Large company list</td><td>Templated, started by signals</td><td>Yes, split within industry</td></tr>
+    <tr><td><b>Tier 1 · one-to-one</b></td><td>10 to 50</td><td>Account plan, quarterly update</td><td>One campaign per account where it clears 300; smaller tier 1 accounts grouped with similar tier 1 accounts</td><td>Personal messages from sales</td><td>No, always treated</td></tr>
+    <tr><td><b>Tier 2 · one-to-few</b></td><td>50 to 300</td><td>Cluster research, light per account</td><td>One company list per cluster</td><td>Sequence per role and cluster</td><td>Yes, split within cluster</td></tr>
+    <tr><td><b>Tier 3 · one-to-many</b></td><td>500 to 5,000</td><td>Automated insights</td><td>Large company list</td><td>Templated, started by signals</td><td>Yes, split within industry</td></tr>
   </tbody></table></div></div>
 
-  <div class="sub"><h3>The holdout split</h3><p>Done once, before launch, and never changed during the window. The control arm keeps everything the company already does, so the comparison isolates the ABM layer.</p>
-  <div class="arms">
-    <div class="arm test"><span class="tag">Test arm</span><ul><li>Half of tier 2 and tier 3 accounts, assigned at random within each tier and industry</li><li>Gets the ABM layer and the ABM sales plays in Run</li><li>Also sees the ICP layer like every ICP account</li></ul></div>
-    <div class="arm ctrl"><span class="tag">Control arm</span><ul><li>The other half, matched on the baseline</li><li>Excluded from every ABM ad set and ABM play</li><li>Sees the ICP layer during Learn, then only the always-on post; normal sales activity</li><li>Never moved out when it shows intent</li></ul></div>
-    <div class="arm out"><span class="tag">Outside the test</span><ul><li>Tier 1 accounts: the tier 1 track, from week 2</li><li>Existing customers: the optional expansion round</li><li>Accounts already late-stage at the split: sales leads</li></ul></div>
-  </div>
-  <p class="note"><b>Size rule.</b> A clean holdout needs about 200 accounts or more per arm, so 400 or more tier 2 and tier 3 accounts. Most B2B target lists are smaller, which makes the fallback the usual path: with a smaller list, use matched lookalike ICP accounts as the control plus the baseline, or a stepped rollout (wave 1 starts, wave 2 waits and serves as control until it starts), and report the result as directional.</p></div>
+  <div class="sub"><h3>Audience sizing</h3><p>LinkedIn serves only to audiences of 300 matched members or more. All audiences are built and checked in week 3.</p>
+  <div class="tbl"><table><thead><tr><th>Audience</th><th>Built from</th><th>If it falls short</th></tr></thead><tbody>
+    <tr><td><b>ICP layer, cold</b></td><td>ICP company list or attributes, with function and seniority</td><td>Widen function or seniority; run rounds in sequence</td></tr>
+    <tr><td><b>Broad ABM, per role</b></td><td>Test arm company list with the role&rsquo;s function and seniority</td><td>Merge roles into function groups; cluster within a tier; enter companies manually under about 200 accounts</td></tr>
+    <tr><td><b>Warm ABM</b></td><td>Engagers at test accounts</td><td>Wait for the pool to grow from live spend</td></tr>
+    <tr><td><b>Engaged pool, rounds 5 and 6</b></td><td>Engagers and key page visitors, 30 days</td><td>Run the two rounds in sequence on the full pool</td></tr>
+    <tr><td><b>Tier 1</b></td><td>One audience per tier 1 account</td><td>Group with similar tier 1 accounts</td></tr>
+  </tbody></table></div></div>
 
-  <div class="sub"><h3>Map the buying committee</h3><p>Four to six people per tier 1 account, two or three per tier 2, one or two per tier 3. The blocker stays on the map and out of the first wave.</p>
-  <div class="tbl"><table><thead><tr><th>Role</th><th>Typical titles at <span data-b="name">[Brand]</span>'s buyers</th><th>What they need to see</th><th>Angle</th><th>Core set cell</th></tr></thead><tbody>
-    <tr><td><b>Champion</b></td><td class="fill">[director or team lead who owns the problem]</td><td>Proof it works for teams like theirs</td><td>A problem their team handles and how peers solved it</td><td>C1</td></tr>
-    <tr><td><b>Decision-maker</b></td><td class="fill">[VP or C-level budget owner]</td><td>Business impact and risk</td><td>The outcome in the metrics they report on</td><td>C2</td></tr>
-    <tr><td><b>End user</b></td><td class="fill">[manager or specialist]</td><td>Day-to-day workflow gains</td><td>How their week gets easier</td><td>C3</td></tr>
-    <tr><td><b>Blocker</b></td><td class="fill">[IT, security, legal, procurement]</td><td>Safety, compliance, integration effort</td><td>The answer to their objection, through the champion</td><td>C4, opportunity stage only</td></tr>
+  <div class="sub"><h3>Campaign structure</h3>
+  <div class="tbl"><table><thead><tr><th>Campaign</th><th>Layer</th><th>Audience</th><th>Objective</th><th>When</th></tr></thead><tbody>
+    <tr><td><b>Learning round</b>, one per round, at most two at once</td><td>ICP</td><td>Cold ICP (rounds 1 and 2), ICP engagers (3 and 4), engaged pool (5 and 6); list A or B where the lists allow</td><td>Engagement or website visits; lead generation in rounds 5 and 6</td><td>Weeks 4 to 13</td></tr>
+    <tr><td><b>Broad ABM</b>, one per role or role group</td><td>ABM, test arm</td><td>Test arm list with function and seniority</td><td>Engagement or website visits</td><td>Week 4 to window end</td></tr>
+    <tr><td><b>Warm ABM</b></td><td>ABM, test arm</td><td>Engagers at test accounts</td><td>Lead generation</td><td>Once the pool reaches 300</td></tr>
+    <tr><td><b>Always-on Thought Leader Ad</b></td><td>All ICP</td><td>Whole ICP, both arms</td><td>Brand awareness, frequency capped</td><td>Week 4 to window end</td></tr>
+    <tr><td><b>Tier 1</b></td><td>Tier 1 accounts</td><td>One per account, or groups of similar tier 1 accounts</td><td>Engagement or website visits</td><td>Week 4 to window end</td></tr>
+  </tbody></table></div>
+  </div>
+
+  <div class="sub"><h3>Map the buying committee</h3>
+  <div class="tbl"><table><thead><tr><th>Role</th><th>Typical titles at <span data-b="name">[Brand]</span>'s buyers</th><th>What they need to see</th><th>Core set cell</th></tr></thead><tbody>
+    <tr><td><b>Champion</b></td><td class="fill">[director or team lead who owns the problem]</td><td>Proof it works for teams like theirs</td><td>C1</td></tr>
+    <tr><td><b>Decision-maker</b></td><td class="fill">[VP or C-level budget owner]</td><td>Business impact and risk</td><td>C2</td></tr>
+    <tr><td><b>End user</b></td><td class="fill">[manager or specialist]</td><td>Day-to-day workflow gains</td><td>C3</td></tr>
+    <tr><td><b>Blocker</b></td><td class="fill">[IT, security, legal, procurement]</td><td>Safety, compliance, integration effort</td><td>C4</td></tr>
   </tbody></table></div></div>
   
-  <div class="sub"><h3>Tier 1 track</h3><p>Starts in week 2 and runs alongside every stage. Tier 1 never waits for the core set.</p>
+  <div class="sub"><h3>Tier 1 accounts</h3><p>Starts in week 2, alongside every stage.</p>
   <div class="grid">
-    <div class="tile"><span class="k">Weeks 2 to 4</span><h3>Account plan</h3><p>One page per account: priorities, the committee by name and role, open initiatives, the situation the account is in, and the one next step. Written with the account owner.</p></div>
-    <div class="tile"><span class="k">From week 4</span><h3>People first</h3><p>Human-written outreach per stakeholder, the expert post in the feed, and invitations to events or roundtables. One sender per stakeholder.</p></div>
-    <div class="tile"><span class="k">From week 14</span><h3>Ads join</h3><p>The core set runs to tier 1, clustered with test-arm or non-target ICP accounts to clear 300, never with control accounts. The account plan is updated every quarter.</p></div>
+    <div class="tile"><span class="k">Weeks 2 to 4</span><h3>Account plan</h3><p>Priorities, the committee by name and role, open initiatives and the next step, written with the account owner.</p></div>
+    <div class="tile"><span class="k">From week 4</span><h3>Outreach</h3><p>Personal messages from the account owner and invitations to events.</p></div>
+    <div class="tile"><span class="k">From week 4</span><h3>Ads</h3><p>Default messages first, then the core set adapted to each account&rsquo;s plan once Build is approved.</p></div>
   </div></div>
-  <div class="gate"><span class="k">Gate to Learn</span><ul><li>Insight Tag and CAPI test events received</li><li>Launch checklist signed off</li><li>ICP, house versions and qualification rule agreed with sales</li><li>Baseline report saved</li><li>List scored, tiered and picked by sales; entitlements agreed</li><li>Holdout split done, balance checked against the baseline, frozen</li><li>Committee mapped; tier 1 account plans written</li></ul></div>
+  <div class="gate"><span class="k">Gate to launch: Run and Learn</span><ul><li>Insight Tag and CAPI test events received</li><li>Launch checklist signed off</li><li>ICP, defaults and qualification rule agreed with sales</li><li>Baseline report saved</li><li>Budget split and payback threshold agreed</li><li>List ranked and tiered with sales; entitlements agreed</li><li>Holdout split done, balance checked against the baseline, frozen</li><li>Committee mapped; tier 1 account plans written</li><li>Role audiences built for test accounts, each clearing 300 members; default ABM messages approved</li></ul></div>
 </section>
 
 <!-- STAGE 2 -->
 <section class="stage-sec" id="s2">
-  <div class="stage-head"><span class="pn">Stage 2 · Weeks 4 to 13 · Engine 1</span><h2>Learn: Flight 1</h2><p>Six independent rounds on the ICP layer, eighteen ads. Each round changes one element and keeps everything else at the house version, so it answers one question about the buyer. The answers go into the learning log, which feeds Flight 2.</p></div>
+  <div class="stage-head"><span class="pn">Stage 2 · Week 4 to window end · Engine 2</span><h2>Run</h2><p>The ABM layer runs on the test arm from week 4, switches to the core set once Build is approved and runs one full sales cycle (at least 90 days). Both arms see the ICP campaigns; only the test arm sees the ABM campaigns. That exclusion is the holdout. The control arm keeps normal sales activity, and both arms are on the monthly scorecard.</p></div>
+  <div class="note"><b>Keep the control clean.</b> Check weekly that control accounts are excluded from every ABM ad set and sales play, and never move accounts out of the control.</div>
+  <div class="sub"><h3>Qualify and hand off</h3><p>Live from the first lead form, about week 10.</p>
+  <div class="grid wide two">
+    
+    <div class="tile"><span class="k">Qualification rule</span><h3>When an account becomes an MQA</h3><p>Engagement from several people at the account crosses the threshold agreed with sales in Set up.</p><p><b>Act now:</b> <span class="fill">[a director requests a meeting; two people view the demo]</span>.</p><p><b>Excluded:</b> partners, competitors, poor fit.</p><p><b>Signals:</b> page visits and post engagement from the account, visits to <span class="fill">[pricing, demo, key pages]</span>, event registrations, a new executive in a relevant role, Sales Navigator buyer intent, third-party intent.</p></div>
+    
+    <div class="tile"><span class="k">Outreach</span><h3>By tier</h3><ul><li>Tier 1: personal messages from the account owner</li><li>Tiers 2 and 3, test arm only: a sequence per role</li><li>Meeting booked: the account&rsquo;s other sequences pause</li></ul></div>
+    <div class="tile"><span class="k">Handoff</span><h3>Four points</h3><ul><li>Who replied, their role and what they said</li><li>Which signal or content moved them</li><li>Who else at the account engaged, and how</li><li>The agreed next step and its date</li></ul><p>Logged in the CRM on the company record.</p></div>
+    <div class="tile"><span class="k">Rhythm</span><h3>GTM standup</h3><p>Every one or two weeks, per account owner: accounts to move, next steps and blockers.</p></div>
+  </div>
+</div>
+  <div class="sub"><h3>Monthly scorecard, from week 4</h3><p>Engagement moves in weeks, pipeline in quarters. The decision waits for the window end.</p>
+  <div class="tbl"><table><thead><tr><th>Layer</th><th>Metric</th><th>Source</th><th>Test arm</th><th>Control arm</th><th>Tier 1</th></tr></thead><tbody>
+    <tr><td><b>Coverage</b></td><td>Share of the committee mapped and reached</td><td>Account plan, Company Engagement Report</td><td class="fill"></td><td>n/a</td><td class="fill"></td></tr>
+    <tr><td><b>Engagement</b></td><td>Accounts with two or more people engaged</td><td>Campaign Manager, CRM</td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+    <tr><td><b>Engagement</b></td><td>Engaged roles per account (role read, directional)</td><td>Company Engagement Report</td><td class="fill"></td><td>n/a</td><td class="fill"></td></tr>
+    <tr><td><b>Engagement</b></td><td>Engagement minutes per account; accounts on site</td><td>ABM tool or CRM website tracking, Insight Tag</td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+    <tr><td><b>Progression</b></td><td>MQA rate (leading indicator, not used for the decision)</td><td>CRM</td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+    <tr><td><b>Outcomes</b></td><td>Opportunity rate, pipeline per account, days to opportunity</td><td>CRM, Revenue Attribution Report</td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+    <tr><td><b>Outcomes</b></td><td>Win rate and deal size (when deals close)</td><td>CRM</td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+    <tr><td><b>Economics</b></td><td>Spend, cost per engaged account, cost per opportunity, pipeline per euro spent</td><td>Campaign Manager, CRM, finance</td><td class="fill"></td><td>n/a</td><td class="fill"></td></tr>
+  </tbody></table></div></div>
+  
+  <div class="gate"><span class="k">Gate to Readout</span><ul><li>Full window completed: at least one sales cycle, 90 days or more, after the core set went live</li><li>Control exclusion checked every week</li><li>No change to the split or the rule during the window</li></ul></div>
+</section>
+
+<!-- STAGE 3 -->
+<section class="stage-sec" id="s3">
+  <div class="stage-head"><span class="pn">Stage 3 · Weeks 4 to 13 · Engine 1</span><h2>Learn: Flight 1</h2><p>Six rounds on the ICP layer, eighteen ads. Each round changes one element and runs at least three weeks, in A and B pairs only on an uploaded company list split in two. A cell wins when it leads on engaged target accounts and sales confirms the conversations; no clear leader is logged as a result. Answers feed the learning log and Flight 2.</p></div>
   <div class="grid">
-    <div class="tile"><span class="k">Rounds 1 and 2</span><p>Cold ICP audience, split in two halves. Objective: engagement. CTA: Learn more.</p></div>
-    <div class="tile"><span class="k">Rounds 3 and 4</span><p>ICP engagers: ad, video and document engagers, site visitors, company page visitors, 90 days. Objective: engagement and website visits. If a half falls below 300, run the two rounds one after the other on the full pool (about three weeks more).</p></div>
-    <div class="tile"><span class="k">Rounds 5 and 6</span><p>Engaged pool and key page visitors, 30 days, with LinkedIn lead forms. The qualification rule and the same-day handoff (see Run) go live with the first lead form, around week 10. If a half falls below 300, run the two rounds one after the other on the full pool and move Build back by about three weeks.</p></div>
+    <div class="tile"><span class="k">Rounds 1 and 2</span><p>Cold ICP audience. Paired on list A and list B when the ICP is an uploaded list, in sequence otherwise. Objective: engagement. CTA: Learn more.</p></div>
+    <div class="tile"><span class="k">Rounds 3 and 4</span><p>ICP engagers over 90 days (ads, video, documents, site and page visitors), split by list A and list B. Objective: engagement and website visits. Below 300 per half, run in sequence (about three weeks more).</p></div>
+    <div class="tile"><span class="k">Rounds 5 and 6</span><p>Engaged pool and key page visitors over 30 days, with lead forms. Qualification and handoff go live here, around week 10. Below 300 per half, run in sequence and Build moves back about three weeks.</p></div>
   </div>
   <div id="flight1"></div>
   <div class="sub"><h3>Learning log</h3><p>One line per round, filled when it closes and confirmed with sales. This table is the brief for Build.</p>
@@ -429,48 +470,11 @@ nav.jump a:hover{background:var(--b-tint);color:var(--b-main)}
   <div class="gate"><span class="k">Gate to Build</span><ul><li>Rounds 1 to 4 read: drafting can start</li><li>Rounds 5 and 6 read before the core set is approved</li><li>Learning log complete and confirmed with sales</li><li>Lead quality from rounds 5 and 6 checked against the ICP</li></ul></div>
 </section>
 
-<!-- STAGE 3 -->
-<section class="stage-sec" id="s3">
-  <div class="stage-head"><span class="pn">Stage 3 · Weeks 12 to 14</span><h2>Build: Flight 2</h2><p>One core message built from everything Flight 1 learned: the lever, the offer, the reason to believe, the format, the ask and the situation that worked. It is written once per buying role, keeps the industry and situation in the copy and never names the account. The expert post is refreshed with the same message.</p></div>
-  <div class="cells" data-cells="F2"></div>
-  <div class="gate"><span class="k">Gate to Run</span><ul><li>Core set approved: one message per role and the refreshed expert post</li><li>Every claim, offer and promise checked against the company's own pages</li><li>Role audiences built for test accounts, each clearing 300 members</li></ul></div>
-</section>
-
 <!-- STAGE 4 -->
 <section class="stage-sec" id="s4">
-  <div class="stage-head"><span class="pn">Stage 4 · Week 14 to window end · Engine 2</span><h2>Run</h2><p>One loop for one full sales cycle (at least 90 days). The core set goes to the test arm only; the control arm gets the always-on post and normal sales activity. The rule decides when sales steps in, the standup moves the accounts, and the scorecard shows both arms every month.</p></div>
-  <div class="sub" style="margin-top:0"><h3>The ABM layer</h3>
-  <div class="grid wide">
-    <div class="tile"><span class="k">Broad ABM · test arm</span><h3>The committee, by role</h3><p>Company lists of test accounts (tier 1 clustered with test-arm or non-target accounts, never control), with function and seniority layered per role. Cells C1 to C3. Engagers are excluded, so nobody sits in two campaigns. Objective: engagement and website visits.</p></div>
-    <div class="tile"><span class="k">Warm ABM · test arm</span><h3>People who engaged</h3><p>Engagers at test accounts, pooled by industry to clear 300, shown the Flight 1 winning ask with a lead form. Accounts too small to serve go to sales as a list.</p></div>
-    <div class="tile"><span class="k">Opportunity stage · test arm</span><h3>The wider committee</h3><p>When an opportunity opens, the ads widen to validation and consensus: case studies, the C4 document for IT, security and procurement, and the expert post.</p></div>
-    <div class="tile"><span class="k">Always on · everyone in the ICP</span><h3>Expert post (C5)</h3><p>Starts in week 4 with the house message and runs to the end, to the whole ICP, both arms included, at a low steady budget. Build refreshes it with the core message. It keeps the brand in memory for accounts that are not in market yet.</p></div>
-  </div>
-  
-  <div class="note"><b>Keep the control clean.</b> Check weekly that control accounts are excluded from every ABM ad set and sales play. Contamination makes the result look smaller; quietly moving accounts out of the control makes it look bigger. Both make it useless.</div>
-  </div>
-  <div class="sub"><h3>Qualify and hand off</h3><p>Live since the first lead form in Learn. The rule was agreed in Set up and does not change during the window.</p>
-  <div class="grid wide two">
-    
-    <div class="tile"><span class="k">Qualification rule</span><h3>When an account becomes an MQA</h3><p><b>Simple rule:</b> two or more people from the same account show a signal within two weeks.</p><p><b>Scored rule:</b> <span class="fill">[60]</span> engagement minutes in the last <span class="fill">[90]</span> days from at least <span class="fill">[3]</span> roles, one of them <span class="fill">[VP]</span> or above.</p><p><b>Act now:</b> <span class="fill">[a director requests a meeting; two people view the demo]</span>.</p><p><b>Excluded:</b> partners, competitors, poor fit.</p><p><b>Signals:</b> page visits and post engagement from the account, visits to <span class="fill">[pricing, demo, key pages]</span>, event registrations, a new executive in a relevant role, third-party intent.</p><p><b>Minutes:</b> page visit <span class="fill">[1]</span>, ad engagement <span class="fill">[2]</span>, email reply <span class="fill">[2]</span>, download <span class="fill">[10]</span>, event <span class="fill">[20 to 30]</span>, sales meeting <span class="fill">[30]</span>.</p></div>
-    
-    <div class="tile"><span class="k">Outreach</span><h3>Three messages per role</h3><ul><li>After the accept: context and one question about their problem</li><li>A few days later: the strongest proof for that role</li><li>A week later: a small next step or a graceful exit</li><li>Tier 1 notes written by a person; never two senders on one stakeholder</li><li>Meeting booked: pause the account's other sequences. Quiet after the sequence: back to warm-up</li></ul></div>
-    <div class="tile"><span class="k">Handoff</span><h3>Same day, four points</h3><ul><li>Who replied, their role and what they said</li><li>Which signal or content moved them</li><li>Who else at the account engaged, and how</li><li>The agreed next step and its date</li></ul><p>Logged in the CRM on the company record.</p></div>
-    <div class="tile"><span class="k">Rhythm</span><h3>GTM standup</h3><p>Every one or two weeks, 5 to 10 minutes per account owner: what happened, the top 3 to 5 accounts to move, 2 opportunities to accelerate, who does what, blockers. Alerts by email or Slack between standups.</p></div>
-  </div>
-</div>
-  <div class="sub"><h3>Monthly scorecard, from week 4</h3><p>Coverage and engagement move in weeks; pipeline moves in quarters. Until Run starts, both arms show the ICP layer only, which is the check that the split is balanced.</p>
-  <div class="tbl"><table><thead><tr><th>Layer</th><th>Metric</th><th>Source</th><th>Test arm</th><th>Control arm</th><th>Tier 1</th></tr></thead><tbody>
-    <tr><td><b>Coverage</b></td><td>Share of the committee mapped and reached</td><td>Account plan, Company Engagement Report</td><td class="fill">[ ]</td><td>n/a</td><td class="fill">[ ]</td></tr>
-    <tr><td><b>Engagement</b></td><td>Accounts with two or more people engaged</td><td>Campaign Manager, CRM</td><td class="fill">[ ]</td><td class="fill">[ ]</td><td class="fill">[ ]</td></tr>
-    <tr><td><b>Engagement</b></td><td>Engaged roles per account (role read, directional)</td><td>Company Engagement Report</td><td class="fill">[ ]</td><td>n/a</td><td class="fill">[ ]</td></tr>
-    <tr><td><b>Engagement</b></td><td>Engagement minutes per account; accounts on site</td><td>Insight Tag, CRM</td><td class="fill">[ ]</td><td class="fill">[ ]</td><td class="fill">[ ]</td></tr>
-    <tr><td><b>Progression</b></td><td>MQA rate (leading indicator, not used for the decision)</td><td>CRM</td><td class="fill">[ ]</td><td class="fill">[ ]</td><td class="fill">[ ]</td></tr>
-    <tr><td><b>Outcomes</b></td><td>Opportunity rate, pipeline per account, days to opportunity</td><td>CRM, Revenue Attribution Report</td><td class="fill">[ ]</td><td class="fill">[ ]</td><td class="fill">[ ]</td></tr>
-    <tr><td><b>Outcomes</b></td><td>Win rate and deal size (when deals close)</td><td>CRM</td><td class="fill">[ ]</td><td class="fill">[ ]</td><td class="fill">[ ]</td></tr>
-  </tbody></table></div></div>
-  
-  <div class="gate"><span class="k">Gate to Readout</span><ul><li>Full window completed (one sales cycle, at least 90 days)</li><li>Control exclusion checked every week</li><li>No change to the split or the rule during the window</li></ul></div>
+  <div class="stage-head"><span class="pn">Stage 4 · Weeks 12 to 14</span><h2>Build: Flight 2</h2><p>One core message from Flight 1: the lever, offer, reason to believe, format, ask and situation that won. Written per buying role, never naming the account. It replaces the default messages on the ABM layer and refreshes the Thought Leader Ad.</p></div>
+  <div class="cells" data-cells="F2"></div>
+  <div class="gate"><span class="k">Gate to the core set</span><ul><li>Core set approved: one message per role and the refreshed Thought Leader Ad</li><li>Every claim, offer and promise checked against the company's own pages</li><li>Role audiences rechecked, each still clearing 300 members</li></ul></div>
 </section>
 
 <!-- STAGE 5 -->
@@ -478,15 +482,12 @@ nav.jump a:hover{background:var(--b-tint);color:var(--b-main)}
   <div class="stage-head"><span class="pn">Stage 5 · Window end, about week 27</span><h2>Readout and scale</h2><p>The test arm against the control arm on opportunity rate and pipeline per account, then one decision. Tier 1 is reported on its own.</p></div>
   <div class="sub" style="margin-top:0"><h3>The decision at window end</h3>
   <div class="arms">
-    <div class="arm go"><span class="tag">Scale</span><ul><li>Test arm clearly ahead on opportunity rate or pipeline per account</li><li>Sales confirms the conversations</li><li>Extend the ABM layer to the control arm and the next tier</li></ul></div>
+    <div class="arm go"><span class="tag">Scale</span><ul><li>Test arm clearly ahead on opportunity rate or pipeline per account</li><li>Sales confirms the conversations</li><li>The extra pipeline pays back the ABM spend within the payback threshold</li><li>Extend the ABM layer to the control arm and the next accounts on the ranked list</li></ul></div>
     <div class="arm fix"><span class="tag">Adjust</span><ul><li>Engagement up, pipeline flat</li><li>The ads work; the handoff, the offer or the rule does not</li><li>Fix qualification and handoff, keep the split, run a second window</li></ul></div>
     <div class="arm stop"><span class="tag">Stop or redesign</span><ul><li>No difference after a full window</li><li>Go back to the learning log and the account list</li><li>Run a new Flight 1 round where the gap is</li></ul></div>
   </div></div>
   
-  <div class="sub opt" id="expansion"><span class="optflag">Optional</span><h3>Expansion round</h3><p>The bow-tie: after closed-won, the same method grows existing accounts. Three product cards, one variable (the next product), read on meetings with current clients. It runs on the client list with its own read, so it can start at any time and does not feed the learning log or the core set.</p>
-  <p class="note"><b>Include when</b> the client sells several products and the client list clears 300 matched members in the relevant roles. Below that, expansion runs as a sales and email motion, outside LinkedIn.</p>
-  <div class="round-meta"><span>Audience: matched company list of current clients, users of at least one product</span><span>Read: meetings with current clients</span><span>Guardrail: frequency under 2 a week</span></div>
-  <div class="cells" data-cells="EX"></div></div>
+  <p class="note">Once a deal closes, the same method runs on current clients to cross-sell other products.</p>
 
 </section>
 
@@ -511,22 +512,22 @@ nav.jump a:hover{background:var(--b-tint);color:var(--b-main)}
 </section>
 
 <section id="catalogue">
-  <div class="sec-head"><span class="eyebrow">Catalogue</span><h2>Six offers</h2><p>[Five products and one service], in the company's own names and wording. The product views are drawn as illustrations, to be replaced with real screens.</p></div>
+  <div class="sec-head"><span class="eyebrow">Catalogue</span><h2>Six offers</h2><p>[Five products and one service] in the company's own names. Product views are illustrations, to be replaced with real screens.</p></div>
   <div class="cat" id="cat"></div>
 </section>
 
 <section id="layouts">
-  <div class="sec-head"><span class="eyebrow">Layouts</span><h2>Four layouts, four jobs</h2><p>Rename each layout after an object from the world the brand serves. Within a round, the layout and the visual stay fixed, so the tested element is the only thing that changes.</p></div>
+  <div class="sec-head"><span class="eyebrow">Layouts</span><h2>How the ads are built</h2><p>Rename each layout after an object from the brand&rsquo;s world. Within a round, layout and visual stay fixed.</p></div>
   <div class="layouts" id="lays"></div>
   <div class="grid fixed">
     <div class="tile"><span class="k">Fixed signal</span><h3>Logo on every ad</h3><p>White on the brand colour, brand colour on white. Bottom right, on the coloured background.</p></div>
     <div class="tile"><span class="k">Fixed signal</span><h3>The accent from the logo</h3><p>Used sparingly. It marks the second tape line, the band and the stamp.</p></div>
     <div class="tile"><span class="k">Fixed signal</span><h3>The product is the picture</h3><p>Every ad shows a product view. No stock photos.</p></div>
-    <div class="tile"><span class="k">Fixed signal</span><h3>Short on the image</h3><p>No more than eight words on the creative. The argument goes in the intro text.</p></div>
+    <div class="tile"><span class="k">Fixed signal</span><h3>Short on the image</h3><p>Few words on the creative. The argument goes in the intro text.</p></div>
   </div>
 </section>
 
-
+<footer class="labfoot">ABM lab by Simplificate, the LinkedIn acquisition module of the Simplificate growth methodology. It brings target accounts into pipeline; from the opportunity onwards, the Revenue Lab runs the plays that close, activate and retain them.</footer>
 </div>
 
 <script>
@@ -561,18 +562,18 @@ const AUD={
  warm:'ICP engagers, 90 days: ad, video and document engagers, Insight Tag site visitors, company page visitors.',
  hot:'Engaged pool, 30 days: [key page] visitors, document openers, video viewers at 50 percent. Exclude form submitters. Leads checked against the ICP.',
  broad:'Test arm only. Company lists of test accounts by cluster, function and seniority per role. Engagers excluded. Each audience clears 300.',
- opp:'Test accounts with an open opportunity: IT, security, legal and procurement functions.',
+ opp:'Test arm only. IT, security, legal and procurement functions at test accounts. Engagers excluded. Each audience clears 300.',
  all:'Whole ICP, both arms, all stages. Low steady budget.',
  cli:'Matched company list of current clients, users of at least one product.'
 };
 
 const ROUNDS=[
- {n:1,variable:'Hook',q:'Which psychological lever makes the committee stop?',test:'Three levers on the house offer, same product view, same layout',hold:'Offer, reason to believe, format and ask at the house version.',aud:AUD.cold+' Half A.',read:'Engagement rate in target roles; clicks to the landing page',guard:'Frequency under 4 a week',fmt:'3 cells, single image 1:1'},
- {n:2,variable:'Lead offer',q:'Which product opens the account?',test:'Three products with the house hook',hold:'Hook at the house version from Set up. Only the product moves.',aud:AUD.cold+' Half B.',read:'Engaged accounts per product; share of target roles',guard:'Share of impressions inside the ICP',fmt:'3 cells, single image 1:1'},
- {n:3,variable:'Reason to believe',q:'What proof moves them to the site?',test:'Three angles on Product 2',hold:'Product 2 and the Brief layout held. Ask at the house version.',aud:AUD.warm+' Half A.',read:'Site visits from ICP accounts; target accounts as a secondary line',guard:'Cost per engaged account',fmt:'3 cells, single image 1:1'},
- {n:4,variable:'Format',q:'Which format carries the message best?',test:'Thought Leader Ad, vertical video, document ad',hold:'The house reason to believe and Product 3 held. One format per ad set: three ad sets, same audience, equal budgets.',aud:AUD.warm+' Half B.',read:'Engaged roles per account, each format against its own normal',guard:'Clicks to the landing page for the expert post',fmt:'3 ad sets, one per format'},
- {n:5,variable:'The ask',q:'Which first step do they say yes to?',test:'The main ask as control against two other real asks',hold:'The service and the Sheet layout held.',aud:AUD.hot,read:'Lead form completion; leads accepted by sales',guard:'Share of leads matching the ICP',fmt:'3 cells, single image, lead form'},
- {n:6,variable:'Buying situation',q:'Which situation makes the need urgent?',test:'Three situations the company names on its own site',hold:'Product 4 and the house ask held.',aud:AUD.hot,read:'Meetings accepted by sales',guard:'Lead quality checked against the ICP',fmt:'3 cells, single image, lead form'}
+ {n:1,variable:'Hook',q:'Which psychological lever makes the committee stop?',test:'Three levers on the default offer, same product view, same layout',hold:'Offer, reason to believe, format and ask at the default.',aud:AUD.cold+' Half A.',read:'Engaged target accounts; engagement rate in target roles',guard:'Frequency, read in reporting',fmt:'3 cells, single image 1:1'},
+ {n:2,variable:'Lead offer',q:'Which product opens the account?',test:'Three products with the default hook',hold:'Only the product moves.',aud:AUD.cold+' Half B.',read:'Engaged accounts per product; share of target roles',guard:'Share of impressions inside the ICP',fmt:'3 cells, single image 1:1'},
+ {n:3,variable:'Reason to believe',q:'What proof moves them to the site?',test:'Three angles on Product 2',hold:'Product 2 and the Brief layout held. Ask at the default.',aud:AUD.warm+' Half A.',read:'Engaged target accounts; site visits',guard:'Cost per engaged account',fmt:'3 cells, single image 1:1'},
+ {n:4,variable:'Format',q:'Which format carries the message best?',test:'Thought Leader Ad, vertical video, document ad',hold:'The default reason to believe and Product 3 held. One format per ad set: three ad sets, same audience, equal budgets.',aud:AUD.warm+' Half B.',read:'Engaged roles per account, each format against its own normal',guard:'Cost per engaged account',fmt:'3 ad sets, one per format'},
+ {n:5,variable:'The ask',q:'Which first step do they say yes to?',test:'The main ask as control against two other real asks',hold:'The service and the Sheet layout held.',aud:AUD.hot+' Half A.',read:'Lead form completion; leads accepted by sales',guard:'Share of leads matching the ICP',fmt:'3 cells, single image, lead form'},
+ {n:6,variable:'Buying situation',q:'Which situation makes the need urgent?',test:'Three situations the company names on its own site',hold:'Product 4 and the default ask held.',aud:AUD.hot+' Half B.',read:'Meetings accepted by sales',guard:'Lead quality checked against the ICP',fmt:'3 cells, single image, lead form'}
 ];
 
 const CELLS=[
@@ -587,15 +588,15 @@ const CELLS=[
   pt:'[Name the split the team works around. Then how Product 1 closes it.]',hl:'[The split, closed]',cta:'Learn more',
   why:'It names the split the team works around. Set against it, the product stands out as the one different option in the feed.'},
 
- /* Round 2: Lead offer. Products 4, 5, 3 with the house hook */
- {id:'2A',g:'F1',r:2,lab:'Round 2 · Cell A',p:'M4',L:'tag',fmt:'1:1',place:'Single image',t1:'[House hook,',t2:'applied to Product 4]',lever:'House hook, held',emo:['Recognition','Clarity'],cueLabel:'Product cue',cue:['[Cue 1]','[Cue 2]'],
-  pt:'[The house hook from Set up, applied to Product 4. Only features the site states.]',hl:'[Outcome of Product 4]',cta:'Learn more',
+ /* Round 2: Lead offer. Products 4, 5, 3 with the default hook */
+ {id:'2A',g:'F1',r:2,lab:'Round 2 · Cell A',p:'M4',L:'tag',fmt:'1:1',place:'Single image',t1:'[Default hook,',t2:'applied to Product 4]',lever:'Default hook, held',emo:['Recognition','Clarity'],cueLabel:'Product cue',cue:['[Cue 1]','[Cue 2]'],
+  pt:'[The default hook from Set up, applied to Product 4. Only features the site states.]',hl:'[Outcome of Product 4]',cta:'Learn more',
   why:'[Which buyer Product 4 speaks to, and what a lead here says about the best way into the account.]'},
- {id:'2B',g:'F1',r:2,lab:'Round 2 · Cell B',p:'M5',L:'tag',fmt:'1:1',place:'Single image',t1:'[House hook,',t2:'applied to Product 5]',lever:'House hook, held',emo:['Recognition','Clarity'],cueLabel:'Product cue',cue:['[Cue 1]','[Cue 2]'],
-  pt:'[The house hook applied to Product 5. Only features the site states.]',hl:'[Outcome of Product 5]',cta:'Learn more',
+ {id:'2B',g:'F1',r:2,lab:'Round 2 · Cell B',p:'M5',L:'tag',fmt:'1:1',place:'Single image',t1:'[Default hook,',t2:'applied to Product 5]',lever:'Default hook, held',emo:['Recognition','Clarity'],cueLabel:'Product cue',cue:['[Cue 1]','[Cue 2]'],
+  pt:'[The default hook applied to Product 5. Only features the site states.]',hl:'[Outcome of Product 5]',cta:'Learn more',
   why:'[Which buyer Product 5 speaks to, and what a lead here says.]'},
- {id:'2C',g:'F1',r:2,lab:'Round 2 · Cell C',p:'M3',L:'tag',fmt:'1:1',place:'Single image',t1:'[House hook,',t2:'applied to Product 3]',lever:'House hook, held',emo:['Recognition','Clarity'],cueLabel:'Product cue',cue:['[Cue 1]','[Cue 2]'],
-  pt:'[The house hook applied to Product 3. Only features the site states.]',hl:'[Outcome of Product 3]',cta:'Learn more',
+ {id:'2C',g:'F1',r:2,lab:'Round 2 · Cell C',p:'M3',L:'tag',fmt:'1:1',place:'Single image',t1:'[Default hook,',t2:'applied to Product 3]',lever:'Default hook, held',emo:['Recognition','Clarity'],cueLabel:'Product cue',cue:['[Cue 1]','[Cue 2]'],
+  pt:'[The default hook applied to Product 3. Only features the site states.]',hl:'[Outcome of Product 3]',cta:'Learn more',
   why:'[Which buyer Product 3 speaks to, and what a lead here says.]'},
 
  /* Round 3: Reason to believe. Product 2 x3 */
@@ -610,11 +611,11 @@ const CELLS=[
   why:'Peers in the same industry lower the perceived risk of a new supplier. Names come from the company\'s own client list, with permission.'},
 
  /* Round 4: Format. Product 3 x3 */
- {id:'4A',g:'F1',r:4,lab:'Round 4 · Cell A',p:'M3',L:'tag',fmt:'1:1',place:'Thought Leader Ad',tla:true,t1:'[House reason',t2:'to believe.]',lever:'House reason to believe, held',emo:['Trust','Clarity'],cueLabel:'Format cue',cue:['Personal voice','Credibility'],
-  pt:'[The house reason to believe, written as a post by an expert at the company.]',hl:'',cta:'',
+ {id:'4A',g:'F1',r:4,lab:'Round 4 · Cell A',p:'M3',L:'tag',fmt:'1:1',place:'Thought Leader Ad',tla:true,t1:'[Default reason',t2:'to believe.]',lever:'Default reason to believe, held',emo:['Trust','Clarity'],cueLabel:'Format cue',cue:['Personal voice','Credibility'],
+  pt:'[The default reason to believe, written as a post by an expert at the company.]',hl:'',cta:'',
   why:'A post from a person reads as advice. It tests whether a personal voice reaches the committee better than the company page.'},
- {id:'4B',g:'F1',r:4,lab:'Round 4 · Cell B',p:'M3',L:'tag',fmt:'4:5',place:'Vertical video',t1:'[House reason',t2:'to believe.]',video:'0:15',lever:'House reason to believe, held',emo:['Trust','Clarity'],cueLabel:'Format cue',cue:['Motion','Demonstration'],
-  pt:'[The house reason to believe, then what the video shows Product 3 doing.]',hl:'[The reason as a headline]',cta:'Learn more',
+ {id:'4B',g:'F1',r:4,lab:'Round 4 · Cell B',p:'M3',L:'tag',fmt:'4:5',place:'Vertical video',t1:'[Default reason',t2:'to believe.]',video:'0:15',lever:'Default reason to believe, held',emo:['Trust','Clarity'],cueLabel:'Format cue',cue:['Motion','Demonstration'],
+  pt:'[The default reason to believe, then what the video shows Product 3 doing.]',hl:'[The reason as a headline]',cta:'Learn more',
   why:'Motion shows the product working, which a still image cannot. If video leads, a short screen recording becomes the next production line.'},
  {id:'4C',g:'F1',r:4,lab:'Round 4 · Cell C',p:'M3',L:'brief',fmt:'1:1',place:'Document ad',t1:'[Guide title.]',para:'[Four pages: the value, where it is lost, how the product fixes it, the next step.]',
   pages:[{t1:'[Where it is lost.]',para:'[Sources of the loss, as the company describes them.]',vis:'M1'},{t1:'[How the product fixes it.]',para:'[What Product 3 does, in their words.]',vis:'M3'},{t1:'[See your own number.]',para:'[Download the guide and estimate it for your business.]',btn:'Download'}],
@@ -635,54 +636,42 @@ const CELLS=[
 
  /* Round 6: Buying situation. Product 4 x3 */
  {id:'6A',g:'F1',r:6,lab:'Round 6 · Cell A',p:'M4',L:'tag',fmt:'1:1',place:'Single image',t1:'[Situation 1,',t2:'their page title]',lever:'Self reference',emo:['Recognition','Urgency of the moment'],cueLabel:'Situation cue',cue:['[Situation 1]','[Trigger]'],
-  pt:'[The first buying situation the company names on its site, then Product 4 and the house ask.]',hl:'[Situation 1 headline]',cta:'Request demo',
+  pt:'[The first buying situation the company names on its site, then Product 4 and the default ask.]',hl:'[Situation 1 headline]',cta:'Request demo',
   why:'A buyer in this situation has a deadline. Naming it shows the company understands the moment as well as the product.'},
  {id:'6B',g:'F1',r:6,lab:'Round 6 · Cell B',p:'M4',L:'tag',fmt:'1:1',place:'Single image',t1:'[Situation 2,',t2:'their page title]',lever:'Self reference',emo:['Recognition','Foresight'],cueLabel:'Situation cue',cue:['[Situation 2]','[Trigger]'],
-  pt:'[The second buying situation the company names, then Product 4 and the house ask.]',hl:'[Situation 2 headline]',cta:'Request demo',
+  pt:'[The second buying situation the company names, then Product 4 and the default ask.]',hl:'[Situation 2 headline]',cta:'Request demo',
   why:'[What this situation tells sales about timing and who in the committee owns it.]'},
  {id:'6C',g:'F1',r:6,lab:'Round 6 · Cell C',p:'M4',L:'tag',fmt:'1:1',place:'Single image',t1:'[Situation 3,',t2:'their page title]',lever:'Self reference',emo:['Recognition','Control'],cueLabel:'Situation cue',cue:['[Situation 3]','[Trigger]'],
-  pt:'[The third buying situation the company names, then Product 4 and the house ask.]',hl:'[Situation 3 headline]',cta:'Request demo',
+  pt:'[The third buying situation the company names, then Product 4 and the default ask.]',hl:'[Situation 3 headline]',cta:'Request demo',
   why:'[What this situation tells sales about timing and who in the committee owns it.]'},
 
  /* Flight 2 · Core set, one message per role */
  {id:'C1',g:'F2',lab:'Core set · C1 · Champion',p:'M1',L:'tag',fmt:'1:1',place:'Single image',aud:AUD.broad,t1:'[How [industry] teams',t2:'solved it.]',lever:'[Flight 1 lever] with social proof',emo:['Belonging','Recognition'],cueLabel:'Role',cue:['Champion','[Director or team lead]'],
   pt:'[The problem their team owns in [industry], and how peers solved it with the winning offer. Industry and situation, never the account name.]',hl:'[Winning offer headline]',cta:'Learn more',
-  why:'The champion builds the internal case. Proof from teams like theirs gives them the material to take upstairs. Worked example: [target account] sits in the [industry] cluster.'},
+  why:'The champion builds the internal case. Proof from teams like theirs gives them the material to take upstairs.'},
  {id:'C2',g:'F2',lab:'Core set · C2 · Decision-maker',p:'M2',L:'brief',fmt:'1:1',place:'Single image',aud:AUD.broad,t1:'[The outcome in the numbers you report.]',para:'[The winning reason to believe, framed in the metrics a budget owner reports on.]',lever:'[Flight 1 reason to believe] with loss aversion',emo:['Control','Ambition'],cueLabel:'Role',cue:['Decision-maker','[VP or C-level]'],
   pt:'[The business impact and the risk of not acting, in the decision-maker\'s metrics. No promised percentages.]',hl:'[Outcome headline]',cta:'Learn more',
   why:'Budget owners weigh impact and risk. The same core message, told in their metrics, avoids product detail they will not read.'},
  {id:'C3',g:'F2',lab:'Core set · C3 · End user',p:'M3',L:'tag',fmt:'1:1',place:'Single image',aud:AUD.broad,t1:'[Your week,',t2:'without [the task].]',lever:'Mental simulation',emo:['Ease','Relief'],cueLabel:'Role',cue:['End user','[Manager or specialist]'],
   pt:'[How the user\'s week changes, using only steps the product page describes.]',hl:'[How it runs]',cta:'Learn more',
   why:'Users stall on how a tool fits their routine. Letting them picture the change turns them into supporters inside the account.'},
- {id:'C4',g:'F2',lab:'Core set · C4 · Blocker, opportunity stage',p:'M5',L:'brief',fmt:'1:1',place:'Document ad',aud:AUD.opp,t1:'[Security and integration, answered.]',para:'[The questions IT, security and procurement ask, answered with what the company states.]',
+ {id:'C4',g:'F2',lab:'Core set · C4 · Blocker',p:'M5',L:'brief',fmt:'1:1',place:'Document ad',aud:AUD.opp,t1:'[Security and integration, answered.]',para:'[The questions IT, security and procurement ask, answered with what the company states.]',
   pages:[{t1:'[Where your data stays.]',para:'[Hosting, access and certifications, as the company states them.]',vis:'M5'},{t1:'[How it connects.]',para:'[Integrations and effort, as the company states them.]',vis:'M3'},{t1:'[Questions for our team.]',para:'[The contact route for technical questions.]',btn:'Download'}],
   lever:'Ambiguity aversion',emo:['Safety','Trust'],cueLabel:'Role',cue:['Blocker','[IT, security, procurement]'],
   pt:'[The answers the evaluation team needs, in one document. Served only when an opportunity is open.]',hl:'[Evaluation guide]',cta:'Download',
-  why:'Blockers stop deals over uncertainty. Shown only after the opportunity opens, it answers their questions without a cold approach, and the champion can share it.'},
- {id:'C5',g:'F2',lab:'Core set · C5 · Always on',p:'M2',L:'tag',fmt:'1:1',place:'Thought Leader Ad',tla:true,aud:AUD.all,t1:'[The strongest',t2:'insight from Flight 1.]',lever:'Mere exposure',emo:['Trust','Curiosity'],cueLabel:'Role',cue:['Whole committee','Brand memory'],
+  why:'Blockers stop deals over uncertainty. A document that answers their questions up front, and the champion can share it.'},
+ {id:'C5',g:'F2',lab:'Core set · C5 · Always-on',p:'M2',L:'tag',fmt:'1:1',place:'Thought Leader Ad',tla:true,aud:AUD.all,t1:'[The strongest',t2:'insight from Flight 1.]',lever:'Mere exposure',emo:['Trust','Curiosity'],cueLabel:'Role',cue:['Whole committee','Brand memory'],
   pt:'[A post by an expert at the company carrying the clearest insight from the learning log. No pitch.]',hl:'',cta:'',
-  why:'Most buyers are not in market today. A steady expert voice keeps the brand in memory so it is on the shortlist when they are.'},
-
- /* Expansion to clients */
- {id:'E1',g:'EX',lab:'Expansion round · E1',p:'M1',L:'card',fmt:'1:1',place:'Single image',t1:'[Next product: Product 1.]',lever:'Collection completion',emo:['Progress','Satisfaction'],
-  pt:'[You already use our products. Product 1 adds its job to what you have.]',hl:'[Add Product 1 to your setup]',cta:'Learn more',
-  why:'A range with a visible next piece pulls clients to complete it. The relationship is already there, so the step feels small.'},
- {id:'E2',g:'EX',lab:'Expansion round · E2',p:'M2',L:'card',fmt:'1:1',place:'Single image',t1:'[Who asks for this report?]',lever:'Self reference',emo:['Recognition','Relief'],
-  pt:'[Question about a report someone builds by hand. Product 2 builds it from their existing data, as the site states.]',hl:'[Reports from your existing data]',cta:'Learn more',
-  why:'The question calls out the person who builds that report by hand. In a cross sell, relevance matters more than reach.'},
- {id:'E3',g:'EX',lab:'Expansion round · E3',p:'SV',L:'card',fmt:'1:1',place:'Single image',t1:'[Get more from what you run.]',lever:'Endowment',emo:['Ownership','Ambition'],
-  pt:'[You already work with us. Our team reviews how you use what you have and where value is left.]',hl:'[A review for current clients]',cta:'Learn more',
-  why:'Clients value what they already own. A review framed around their setup sells the service as protecting that investment.'}
+  why:'Most buyers are not in market today. A steady expert voice keeps the brand in memory so it is on the shortlist when they are.'}
 ];
 
 const MAP=[
- ...ROUNDS.map(r=>({t:'Round '+r.n,st:'2 · Learn',q:r.q,v:r.variable,f:r.fmt,a:['','Cold ICP, half A','Cold ICP, half B','ICP engagers, half A','ICP engagers, half B','Engaged pool, lead form','Engaged pool, lead form'][r.n],rd:r.read,g:r.guard})),
- {t:'Holdout',st:'4 · Run, 5 · Readout',q:'Does the ABM layer move target accounts?',v:'ABM layer on (test arm) or off (control arm)',f:'Core set C1 to C4, warm ABM with lead form',a:'Tier 2 and 3 targets, split at random',rd:'Opportunity rate and pipeline per account, after one sales cycle; MQA rate as a leading indicator',g:'Control excluded every week; split frozen'},
- {t:'Expansion round',st:'5 · Any time, optional',q:'Which next product opens a conversation with current clients?',v:'Next product',f:'3 product cards',a:'Current clients',rd:'Meetings with current clients',g:'Frequency under 2 a week'}
+ ...ROUNDS.map(r=>({t:'Round '+r.n,st:'3 · Learn',q:r.q,v:r.variable,f:r.fmt,a:['','Cold ICP, half A','Cold ICP, half B','ICP engagers, half A','ICP engagers, half B','Engaged pool, half A','Engaged pool, half B'][r.n],rd:r.read,g:r.guard})),
+ {t:'Holdout',st:'2 · Run, 5 · Readout',q:'Does ABM create pipeline?',v:'ABM layer on (test arm) or off (control arm)',f:'Default messages from week 4, then core set C1 to C4; warm ABM with lead form',a:'Tier 2 and 3 targets, split at random',rd:'Opportunity rate and pipeline per account, after one sales cycle; MQA rate as a leading indicator',g:'Control excluded every week; split frozen'}
 ];
 const RUN=[
- {t:'Core set',st:'3 · Build, 4 · Run',w:'Carries the Flight 1 learnings to each buying role at test accounts',f:'C1 to C4, one per role',a:'Test arm, by role',m:'Engaged roles per account (directional); frequency under 3 a week'},
- {t:'Always on',st:'2 · Learn to 5 · Readout',w:'Keeps the brand in memory for accounts not yet in market',f:'Expert post C5',a:'Whole ICP, both arms',m:'Reach in target roles, follows of the expert, clicks to the landing page'}
+ {t:'Core set',st:'4 · Build, 2 · Run',w:'Carries the Flight 1 learnings to each buying role at test accounts',f:'C1 to C4, one per role',a:'Test arm, by role',m:'Engaged roles per account (directional); frequency, read in reporting'},
+ {t:'Thought Leader Ad',st:'2 · Run to 5 · Readout',w:'Keeps the brand in memory for accounts not yet in market',f:'C5',a:'Whole ICP, both arms',m:'Reach in target roles, follows of the expert, clicks to the landing page'}
 ];
 
 (()=>{const r=document.documentElement.style,m={main:'--b-main',deep:'--b-deep',ring:'--b-ring',acc:'--b-acc',acc2:'--b-acc2',tint:'--b-tint',soft:'--b-soft',line:'--b-line',steel:'--b-steel',band:'--b-band',cueBg:'--b-cue-bg',cueFg:'--b-cue-fg'};
@@ -764,14 +753,7 @@ function card(c){
    <div class="art">${post(c)}</div>
    <div class="meta">
      <div class="kv"><span class="k">Lever</span><span class="lever">${esc(c.lever)}</span></div>
-     <div class="kv"><span class="k">Emotional triggers</span><div class="trig">${c.emo.map(e=>`<span>${esc(e)}</span>`).join('')}</div></div>
-     ${c.cue?`<div class="kv"><span class="k">${c.cueLabel}</span><div class="trig cue">${c.cue.map(e=>`<span>${esc(e)}</span>`).join('')}</div></div>`:''}
      ${c.aud?`<div class="kv"><span class="k">Audience</span><span class="v m">${esc(c.aud)}</span></div>`:''}
-     <div class="copy">
-       <div class="row"><span class="lab">${c.tla?'Post':'Intro'}</span><span>${esc(c.pt)} <span class="count">${c.pt.length}/150</span></span></div>
-       ${c.tla?`<div class="row"><span class="lab">Format</span><span>Promoted post from a ${esc(BRAND.expert)}, under the expert's own name. No headline or button.</span></div>`:`<div class="row"><span class="lab">Headline</span><span><b>${esc(c.hl)}</b> <span class="count">${c.hl.length}/70</span></span></div>
-       <div class="row"><span class="lab">CTA</span><span class="btn">${c.cta}</span></div>`}
-     </div>
      <div class="kv"><span class="k">Why this angle</span><span class="v m">${esc(c.why)}</span></div>
    </div></article>`;
 }
@@ -784,7 +766,7 @@ document.getElementById('palette').innerHTML=PAL.map(([n,h,r])=>`<div class="sw"
 document.getElementById('cat').innerHTML=Object.entries(PROD).map(([k,p])=>`<div class="prod"><div class="shot">${VIS[k]()}</div><div class="info"><code>${p.code}</code><b>${esc(p.name)}</b><span>${esc(p.job)}</span><span>For ${esc(p.who.toLowerCase())}</span><span class="uses">Cells ${CELLS.filter(c=>c.p===k).map(c=>c.id).join(', ')}</span></div></div>`).join('');
 
 /* layouts */
-const LAYS=[['tag','Tape Line','A two line headline on two straight tape strips and the product view on the brand colour. Rename after an object from the client\'s world. Hooks, offers, roles and the expert post.','1A'],['brief','Brief','Product view on a light field above a brand colour band with one headline and one paragraph. Reasons to believe and document pages.','3A'],['sheet','Sheet','Grid paper, pinned report, round stamp. The ask.','5A'],['card','Product Card','Product view, one tag, product bar with the product name. The optional expansion round.','E1']];
+const LAYS=[['tag','Tape Line','A two line headline on two straight tape strips and the product view on the brand colour. Hooks, offers, roles and the Thought Leader Ad.','1A'],['brief','Brief','Product view on a light field above a brand colour band with one headline and one paragraph. Reasons to believe and document pages.','3A'],['sheet','Sheet','Grid paper, pinned report, round stamp. The ask.','5A']];
 document.getElementById('lays').innerHTML=LAYS.map(([k,n,d,id],i)=>`<div class="lay"><div class="mini">${ad(CELLS.find(c=>c.id===id))}</div><div class="txt"><span class="k">Layout ${i+1}</span><h3>${n}</h3><p>${d}</p></div></div>`).join('');
 
 /* test map */
@@ -803,7 +785,7 @@ document.getElementById('flight1').innerHTML=ROUNDS.map(r=>`<div class="round">
 document.querySelectorAll('[data-cells]').forEach(el=>{el.innerHTML=CELLS.filter(c=>c.g===el.dataset.cells).map(card).join('')});
 
 /* learning log */
-document.getElementById('logBody').innerHTML=ROUNDS.map(r=>`<tr><td class="r">${r.n}</td><td>${esc(r.q)}</td><td class="fill">[ ]</td><td class="fill">[ ]</td><td class="fill">[ ]</td></tr>`).join('');
+document.getElementById('logBody').innerHTML=ROUNDS.map(r=>`<tr><td class="r">${r.n}</td><td>${esc(r.q)}</td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>`).join('');
 
 /* document controls */
 document.querySelectorAll('.car-wrap').forEach(w=>{
