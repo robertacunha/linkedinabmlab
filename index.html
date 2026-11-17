@@ -411,10 +411,11 @@ nav.jump a:hover{background:var(--b-tint);color:var(--b-main)}
 
   <div class="sub"><h3>Map the buying committee</h3>
   <div class="tbl"><table><thead><tr><th>Role</th><th>Typical titles at <span data-b="name">[Brand]</span>'s buyers</th><th>What they need to see</th><th>Core set cell</th></tr></thead><tbody>
-    <tr><td><b>Champion</b></td><td class="fill">[director or team lead who owns the problem]</td><td>Proof it works for teams like theirs</td><td>C1</td></tr>
-    <tr><td><b>Decision-maker</b></td><td class="fill">[VP or C-level budget owner]</td><td>Business impact and risk</td><td>C2</td></tr>
+    <tr><td><b>Champion</b></td><td class="fill">[director or manager who owns the problem]</td><td>Proof it works for teams like theirs</td><td>C1</td></tr>
+    <tr><td><b>Economic buyer</b></td><td class="fill">[CFO or budget-holding VP]</td><td>Business impact and risk</td><td>C2</td></tr>
     <tr><td><b>End user</b></td><td class="fill">[manager or specialist]</td><td>Day-to-day workflow gains</td><td>C3</td></tr>
-    <tr><td><b>Blocker</b></td><td class="fill">[IT, security, legal, procurement]</td><td>Safety, compliance, integration effort</td><td>C4</td></tr>
+    <tr><td><b>Technical evaluator</b></td><td class="fill">[IT, security, data]</td><td>Integration, security and data fit</td><td>C4</td></tr>
+    <tr><td><b>Procurement and legal</b></td><td class="fill">[procurement, legal]</td><td>Terms and vendor risk</td><td>C4</td></tr>
   </tbody></table></div></div>
   
   <div class="sub"><h3>Tier 1 accounts</h3><p>Starts in week 2, alongside every stage.</p>
@@ -649,17 +650,17 @@ const CELLS=[
  {id:'C1',g:'F2',lab:'Core set · C1 · Champion',p:'M1',L:'tag',fmt:'1:1',place:'Single image',aud:AUD.broad,t1:'[How [industry] teams',t2:'solved it.]',lever:'[Flight 1 lever] with social proof',emo:['Belonging','Recognition'],cueLabel:'Role',cue:['Champion','[Director or team lead]'],
   pt:'[The problem their team owns in [industry], and how peers solved it with the winning offer. Industry and situation, never the account name.]',hl:'[Winning offer headline]',cta:'Learn more',
   why:'The champion builds the internal case. Proof from teams like theirs gives them the material to take upstairs.'},
- {id:'C2',g:'F2',lab:'Core set · C2 · Decision-maker',p:'M2',L:'brief',fmt:'1:1',place:'Single image',aud:AUD.broad,t1:'[The outcome in the numbers you report.]',para:'[The winning reason to believe, framed in the metrics a budget owner reports on.]',lever:'[Flight 1 reason to believe] with loss aversion',emo:['Control','Ambition'],cueLabel:'Role',cue:['Decision-maker','[VP or C-level]'],
-  pt:'[The business impact and the risk of not acting, in the decision-maker\'s metrics. No promised percentages.]',hl:'[Outcome headline]',cta:'Learn more',
+ {id:'C2',g:'F2',lab:'Core set · C2 · Economic buyer',p:'M2',L:'brief',fmt:'1:1',place:'Single image',aud:AUD.broad,t1:'[The outcome in the numbers you report.]',para:'[The winning reason to believe, framed in the metrics a budget owner reports on.]',lever:'[Flight 1 reason to believe] with loss aversion',emo:['Control','Ambition'],cueLabel:'Role',cue:['Economic buyer','[CFO or budget-holding VP]'],
+  pt:'[The business impact and the risk of not acting, in the economic buyer\'s metrics. No promised percentages.]',hl:'[Outcome headline]',cta:'Learn more',
   why:'Budget owners weigh impact and risk. The same core message, told in their metrics, avoids product detail they will not read.'},
  {id:'C3',g:'F2',lab:'Core set · C3 · End user',p:'M3',L:'tag',fmt:'1:1',place:'Single image',aud:AUD.broad,t1:'[Your week,',t2:'without [the task].]',lever:'Mental simulation',emo:['Ease','Relief'],cueLabel:'Role',cue:['End user','[Manager or specialist]'],
   pt:'[How the user\'s week changes, using only steps the product page describes.]',hl:'[How it runs]',cta:'Learn more',
   why:'Users stall on how a tool fits their routine. Letting them picture the change turns them into supporters inside the account.'},
- {id:'C4',g:'F2',lab:'Core set · C4 · Blocker',p:'M5',L:'brief',fmt:'1:1',place:'Document ad',aud:AUD.opp,t1:'[Security and integration, answered.]',para:'[The questions IT, security and procurement ask, answered with what the company states.]',
+ {id:'C4',g:'F2',lab:'Core set · C4 · Technical evaluator, procurement and legal',p:'M5',L:'brief',fmt:'1:1',place:'Document ad',aud:AUD.opp,t1:'[Security and integration, answered.]',para:'[The questions IT, security and procurement ask, answered with what the company states.]',
   pages:[{t1:'[Where your data stays.]',para:'[Hosting, access and certifications, as the company states them.]',vis:'M5'},{t1:'[How it connects.]',para:'[Integrations and effort, as the company states them.]',vis:'M3'},{t1:'[Questions for our team.]',para:'[The contact route for technical questions.]',btn:'Download'}],
-  lever:'Ambiguity aversion',emo:['Safety','Trust'],cueLabel:'Role',cue:['Blocker','[IT, security, procurement]'],
-  pt:'[The answers the evaluation team needs, in one document. Served only when an opportunity is open.]',hl:'[Evaluation guide]',cta:'Download',
-  why:'Blockers stop deals over uncertainty. A document that answers their questions up front, and the champion can share it.'},
+  lever:'Ambiguity aversion',emo:['Safety','Trust'],cueLabel:'Role',cue:['Technical evaluator, procurement and legal','[IT, security, procurement, legal]'],
+  pt:'[The answers the evaluation team needs, in one document.]',hl:'[Evaluation guide]',cta:'Download',
+  why:'Technical and procurement reviews stall deals over uncertainty. A document that answers their questions up front, and the champion can share it.'},
  {id:'C5',g:'F2',lab:'Core set · C5 · Always-on',p:'M2',L:'tag',fmt:'1:1',place:'Thought Leader Ad',tla:true,aud:AUD.all,t1:'[The strongest',t2:'insight from Flight 1.]',lever:'Mere exposure',emo:['Trust','Curiosity'],cueLabel:'Role',cue:['Whole committee','Brand memory'],
   pt:'[A post by an expert at the company carrying the clearest insight from the learning log. No pitch.]',hl:'',cta:'',
   why:'Most buyers are not in market today. A steady expert voice keeps the brand in memory so it is on the shortlist when they are.'}
