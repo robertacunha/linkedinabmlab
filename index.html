@@ -340,7 +340,7 @@ nav.jump a:hover{background:var(--b-tint);color:var(--b-main)}
 
 <section id="map">
   <div class="sec-head"><span class="eyebrow">Test map</span><h2>What is tested, and what runs always-on</h2><p>Two tests: six learning rounds and the account holdout.</p></div>
-  <div class="sub" style="margin-top:0"><h3>Test plan</h3>
+  <div class="sub" style="margin-top:0"><h3>Test plan</h3><p>List A and list B: the ICP company list split in two, so two rounds can run at once without reaching the same people. This is separate from the holdout.</p>
   <div class="tbl"><table>
     <thead><tr><th>Test</th><th>Stage</th><th>Question</th><th>Variable</th><th>Format</th><th>Audience</th><th>Primary read</th><th>Guardrail</th></tr></thead>
     <tbody id="mapBody"></tbody>
@@ -458,8 +458,8 @@ nav.jump a:hover{background:var(--b-tint);color:var(--b-main)}
   <div class="stage-head"><span class="pn">Stage 3 · Weeks 4 to 13 · Engine 1</span><h2>Learn: Flight 1</h2><p>Six rounds on the ICP layer, eighteen ads. Each round changes one element and runs at least three weeks, in A and B pairs only on an uploaded company list split in two. A cell wins when it leads on engaged target accounts and sales confirms the conversations; no clear leader is logged as a result. Answers feed the learning log and Flight 2.</p></div>
   <div class="grid">
     <div class="tile"><span class="k">Rounds 1 and 2</span><p>Cold ICP audience. Paired on list A and list B when the ICP is an uploaded list, in sequence otherwise. Objective: engagement. CTA: Learn more.</p></div>
-    <div class="tile"><span class="k">Rounds 3 and 4</span><p>ICP engagers over 90 days (ads, video, documents, site and page visitors), split by list A and list B. Objective: engagement and website visits. Below 300 per half, run in sequence (about three weeks more).</p></div>
-    <div class="tile"><span class="k">Rounds 5 and 6</span><p>Engaged pool and key page visitors over 30 days, with lead forms. Qualification and handoff go live here, around week 10. Below 300 per half, run in sequence and Build moves back about three weeks.</p></div>
+    <div class="tile"><span class="k">Rounds 3 and 4</span><p>ICP engagers over 90 days (ads, video, documents, site and page visitors), split by list A and list B. Objective: engagement and website visits. Below 300 per list, run in sequence (about three weeks more).</p></div>
+    <div class="tile"><span class="k">Rounds 5 and 6</span><p>Engaged pool and key page visitors over 30 days, with lead forms. Qualification and handoff go live here, around week 10. Below 300 per list, run in sequence and Build moves back about three weeks.</p></div>
   </div>
   <div id="flight1"></div>
   <div class="sub"><h3>Learning log</h3><p>One line per round, filled when it closes and confirmed with sales. This table is the brief for Build.</p>
@@ -566,12 +566,12 @@ const AUD={
 };
 
 const ROUNDS=[
- {n:1,variable:'Hook',q:'Which psychological lever makes the committee stop?',test:'Three levers on the default offer, same product view, same layout',hold:'Offer, reason to believe, format and ask at the default.',aud:AUD.cold+' Half A.',read:'Engaged target accounts; engagement rate in target roles',guard:'Frequency, read in reporting',fmt:'3 cells, single image 1:1'},
- {n:2,variable:'Lead offer',q:'Which product opens the account?',test:'Three products with the default hook',hold:'Only the product moves.',aud:AUD.cold+' Half B.',read:'Engaged accounts per product; share of target roles',guard:'Share of impressions inside the ICP',fmt:'3 cells, single image 1:1'},
- {n:3,variable:'Reason to believe',q:'What proof moves them to the site?',test:'Three angles on Product 2',hold:'Product 2 and the Brief layout held. Ask at the default.',aud:AUD.warm+' Half A.',read:'Engaged target accounts; site visits',guard:'Cost per engaged account',fmt:'3 cells, single image 1:1'},
- {n:4,variable:'Format',q:'Which format carries the message best?',test:'Thought Leader Ad, vertical video, document ad',hold:'The default reason to believe and Product 3 held. One format per ad set: three ad sets, same audience, equal budgets.',aud:AUD.warm+' Half B.',read:'Engaged roles per account, each format against its own normal',guard:'Cost per engaged account',fmt:'3 ad sets, one per format'},
- {n:5,variable:'The ask',q:'Which first step do they say yes to?',test:'The main ask as control against two other real asks',hold:'The service and the Sheet layout held.',aud:AUD.hot+' Half A.',read:'Lead form completion; leads accepted by sales',guard:'Share of leads matching the ICP',fmt:'3 cells, single image, lead form'},
- {n:6,variable:'Buying situation',q:'Which situation makes the need urgent?',test:'Three situations the company names on its own site',hold:'Product 4 and the default ask held.',aud:AUD.hot+' Half B.',read:'Meetings accepted by sales',guard:'Lead quality checked against the ICP',fmt:'3 cells, single image, lead form'}
+ {n:1,variable:'Hook',q:'Which psychological lever makes the committee stop?',test:'Three levers on the default offer, same product view, same layout',hold:'Offer, reason to believe, format and ask at the default.',aud:AUD.cold+' List A.',read:'Engaged target accounts; engagement rate in target roles',guard:'Frequency, read in reporting',fmt:'3 cells, single image 1:1'},
+ {n:2,variable:'Lead offer',q:'Which product opens the account?',test:'Three products with the default hook',hold:'Only the product moves.',aud:AUD.cold+' List B.',read:'Engaged accounts per product; share of target roles',guard:'Share of impressions inside the ICP',fmt:'3 cells, single image 1:1'},
+ {n:3,variable:'Reason to believe',q:'What proof moves them to the site?',test:'Three angles on Product 2',hold:'Product 2 and the Brief layout held. Ask at the default.',aud:AUD.warm+' List A.',read:'Engaged target accounts; site visits',guard:'Cost per engaged account',fmt:'3 cells, single image 1:1'},
+ {n:4,variable:'Format',q:'Which format carries the message best?',test:'Thought Leader Ad, vertical video, document ad',hold:'The default reason to believe and Product 3 held. One format per ad set: three ad sets, same audience, equal budgets.',aud:AUD.warm+' List B.',read:'Engaged roles per account, each format against its own normal',guard:'Cost per engaged account',fmt:'3 ad sets, one per format'},
+ {n:5,variable:'The ask',q:'Which first step do they say yes to?',test:'The main ask as control against two other real asks',hold:'The service and the Sheet layout held.',aud:AUD.hot+' List A.',read:'Lead form completion; leads accepted by sales',guard:'Share of leads matching the ICP',fmt:'3 cells, single image, lead form'},
+ {n:6,variable:'Buying situation',q:'Which situation makes the need urgent?',test:'Three situations the company names on its own site',hold:'Product 4 and the default ask held.',aud:AUD.hot+' List B.',read:'Meetings accepted by sales',guard:'Lead quality checked against the ICP',fmt:'3 cells, single image, lead form'}
 ];
 
 const CELLS=[
@@ -664,7 +664,7 @@ const CELLS=[
 ];
 
 const MAP=[
- ...ROUNDS.map(r=>({t:'Round '+r.n,st:'3 · Learn',q:r.q,v:r.variable,f:r.fmt,a:['','Cold ICP, half A','Cold ICP, half B','ICP engagers, half A','ICP engagers, half B','Engaged pool, half A','Engaged pool, half B'][r.n],rd:r.read,g:r.guard})),
+ ...ROUNDS.map(r=>({t:'Round '+r.n,st:'3 · Learn',q:r.q,v:r.variable,f:r.fmt,a:['','Cold ICP · list A','Cold ICP · list B','ICP engagers · list A','ICP engagers · list B','Engaged pool · list A','Engaged pool · list B'][r.n],rd:r.read,g:r.guard})),
  {t:'Holdout',st:'2 · Run, 5 · Readout',q:'Does ABM create pipeline?',v:'ABM layer on (test arm) or off (control arm)',f:'Default messages from week 4, then core set C1 to C4; warm ABM with lead form',a:'Tier 2 and 3 targets, split at random',rd:'Opportunity rate and pipeline per account, after one sales cycle; MQA rate as a leading indicator',g:'Control excluded every week; split frozen'}
 ];
 const RUN=[
